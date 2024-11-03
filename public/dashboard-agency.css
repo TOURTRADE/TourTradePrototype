@@ -1,0 +1,113 @@
+body {
+    font-family: 'Muli', sans-serif;
+    background-color: #fefae0;
+    color: #223240; /* Cambiato colore del testo principale */
+}
+
+header {
+    background-color: #223240; /* Cambiato colore dell'intestazione */
+    color: #fefae0; /* Colore del testo dell'intestazione */
+    padding: 15px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #3B8C66; /* Cambiato colore della sidebar */
+    padding: 15px;
+    height: 100vh; /* Altezza piena */
+    position: fixed; /* Sidebar fissa */
+}
+
+.sidebar h3 {
+    color: #fefae0; /* Colore del titolo della sidebar */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar button {
+    background-color: #60BF81; /* Cambiato colore dei pulsanti nella sidebar */
+    color: #fefae0; /* Colore del testo dei pulsanti nella sidebar */
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+.sidebar button:hover {
+    background-color: #3B8C66; /* Colore al passaggio del mouse sui pulsanti */
+}
+
+.main-content {
+    margin-left: 220px; /* Spazio per la sidebar */
+    padding: 20px;
+    flex: 1; /* Espansione flessibile */
+}
+
+.dashboard-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff; /* Colore di sfondo delle sezioni */
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none; /* Nascondi gli elementi con questa classe */
+}
+
+.section-content {
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #009999; /* Colore dei pulsanti */
+    color: #fefae0; /* Colore del testo dei pulsanti */
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #007b7b; /* Colore al passaggio del mouse sui pulsanti */
+}
+
+/* Stile per i campi di input */
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Stile per la tabella delle abbonamenti */
+.subscription-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.subscription-table th,
+.subscription-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.subscription-table th {
+    background-color: #f2f2f2; /* Colore di sfondo dell'intestazione della tabella */
+}

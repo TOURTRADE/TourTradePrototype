@@ -1,0 +1,617 @@
+.hidden {
+    display: none;
+}
+
+body {
+    font-family: 'Muli', sans-serif;
+    background-color: #fefae0;
+    color: #283618;
+    margin: 0;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: transparent;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.header-left .logo {
+    height: 60px;
+}
+
+.dropdown .dropbtn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: #283618;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.video-background {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+}
+
+#backgroundVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search-group {
+    display: flex;
+    align-items: center;
+    margin: 0 10px; /* Margine per separare le barre di ricerca */
+}
+
+.search-bar {
+    width: 250px; /* Dimensione della barra di ricerca */
+    padding: 10px;
+    margin-right: 5px; /* Spazio tra la barra e il pulsante */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-button {
+    padding: 10px 15px;
+    background-color: #bc6c25;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #8b4d19; /* Colore al passaggio del mouse */
+}
+
+.filter-button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #009999;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-button:hover {
+    background-color: #007b7b; /* Colore al passaggio del mouse */
+}
+
+.filter-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: #fefae0;
+    color: #283618;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    z-index: 20;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto; /* Abilita lo scorrimento verticale */
+    max-height: 90vh; /* Imposta un'altezza massima per evitare che esca dallo schermo */
+}
+
+
+.filter-sidebar.visible {
+    transform: translateX(0);
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-header button {
+    background: #bc6c25;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.filter-header button:hover {
+    background: #8b4d19;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h4 {
+    margin-bottom: 10px;
+}
+
+.filter-section label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.filter-section input,
+.filter-section select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}.search-filter {
+    margin-bottom: 15px;
+}
+
+.search-filter input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-content {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.filter-content.hidden {
+    display: none;
+}
+
+
+.main-footer {
+    background-color: #283618;
+    color: #fefae0;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+.main-footer nav a {
+    color: #fefae0;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.main-footer nav a:hover {
+    text-decoration: underline;
+}
+
+/* Sezione Come Funziona */
+.how-it-works {
+    background-color: #f9f9f9;
+    padding: 60px 20px; /* Aumentato per più spazio */
+    text-align: center;
+}
+
+.how-it-works h2 {
+    color: #009999;
+    margin-bottom: 30px;
+}
+
+.info-blocks {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.info-block {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px; /* Aumentato per più spazio */
+    margin: 15px;
+    flex: 1 1 30%; /* Più spazio per le immagini */
+    max-width: 350px; /* Larghezza massima */
+}
+
+.info-block img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    height: 200px; /* Altezza fissa per le immagini */
+    object-fit: cover; /* Mantiene le proporzioni */
+}
+
+.info-block h3 {
+    color: #333;
+    margin: 15px 0;
+}
+
+.info-block p {
+    color: #555;
+}
+.join-button-container {
+    margin-top: 20px; /* Spazio sopra il pulsante */
+    text-align: center; /* Allinea il pulsante al centro */
+}
+.carousel-container {
+    overflow: hidden; /* Nascondi gli elementi che escono dal carosello */
+    margin: 20px 0; /* Margine tra le sezioni */
+}
+
+
+.carousel {
+    display: flex; /* Allinea gli elementi in una riga */
+    overflow-x: auto; /* Permetti lo scorrimento orizzontale */
+    scroll-behavior: smooth; /* Aggiungi una transizione fluida */
+    gap: 10px; /* Spazio tra gli elementi */
+}
+
+.carousel-item {
+    flex: 0 0 200px; /* Imposta la larghezza di ogni elemento */
+    padding: 10px;
+    background-color: #e7f1ff; /* Colore di sfondo */
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-item.ad {
+    position: relative; /* Posiziona l'etichetta in modo assoluto */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ad-label {
+    position: absolute; /* Posiziona l'etichetta in alto a destra */
+    top: 10px; /* Distanza dal top */
+    right: 10px; /* Distanza dal lato destro */
+    background-color: red; /* Colore rosso per l'etichetta */
+    color: white; /* Colore del testo */
+    padding: 5px; /* Padding dell'etichetta */
+    border-radius: 3px; /* Angoli arrotondati */
+    font-size: 12px; /* Dimensione del testo */
+    font-weight: bold; /* Grassetto per risaltare */
+}
+.popular-destinations-section {
+    padding: 60px 20px; /* Maggiore padding per una sezione più grande */
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.popular-destinations-section h2 {
+    color: #009999;
+    margin-bottom: 40px; /* Maggiore margine sotto il titolo */
+    font-size: 2em; /* Aumenta la dimensione del titolo */
+}
+
+.destination-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Due colonne per schermi piccoli */
+    gap: 20px; /* Spazio tra le destinazioni */
+}
+
+@media (min-width: 768px) {
+    .destination-container {
+        grid-template-columns: repeat(4, 1fr); /* Quattro colonne per schermi più grandi */
+    }
+}
+
+.destination-item {
+    position: relative; /* Necessario per la sovrapposizione del testo */
+    overflow: hidden; /* Nascondi qualsiasi overflow */
+    border-radius: 8px;
+}
+
+.destination-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; /* Effetto zoom al passaggio del mouse */
+}
+
+.destination-item:hover img {
+    transform: scale(1.1); /* Zoom dell'immagine al passaggio del mouse */
+}
+
+.destination-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombra per il testo */
+    text-align: center;
+}
+
+.destination-text h3 {
+    font-size: 2em; /* Aumenta la dimensione del testo */
+    margin: 0;
+}
+
+
+.carousel-item img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+/* Stili per la Dashboard */
+.dashboard {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard h2 {
+    text-align: center;
+    color: #606c38;
+}
+
+.dashboard-section {
+    margin-top: 20px;
+}
+
+.dashboard-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #009999;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.dashboard-button:hover {
+    background-color: #007b7b;
+}
+
+.section-content {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Stili per i messaggi della chat */
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-image: url('/public/background-chat.png');
+    background-size: cover;
+    background-position: center;
+}
+
+#messages {
+    border: 1px solid #ccc;
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    max-width: 70%;
+}
+
+.message-sent {
+    background-color: #d1e7dd;
+    align-self: flex-end;
+}
+
+.message-received {
+    background-color: #fff;
+    align-self: flex-start;
+}
+
+/* Stile per i campi di data e prezzo */
+.date-price-entry {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.date-price-entry input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Banner Agenzia */
+.banner-agency {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+}
+
+.agency-info {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.feedback {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.feedback-list {
+    background-color: #e7f1ff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.offers {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.offer-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.boosting-section {
+    background-color: #f4f4f4; /* Sfondo chiaro per la sezione */
+    padding: 40px 20px; /* Padding interno */
+    margin: 20px 0; /* Margine sopra e sotto */
+    border-radius: 8px; /* Angoli arrotondati */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+    text-align: left; /* Allineamento del testo a sinistra */
+}
+
+.boosting-section h2 {
+    color: #bc6c25; /* Colore del titolo */
+}
+
+.boosting-section h3 {
+    color: #283618; /* Colore del sottotitolo */
+    margin-top: 20px; /* Margine superiore per distanziare i titoli */
+}
+
+.boosting-section p {
+    color: #555; /* Colore del testo */
+    line-height: 1.6; /* Interlinea */
+}
+
+.boosting-section ul {
+    margin-left: 20px; /* Margine a sinistra per la lista */
+    color: #555; /* Colore della lista */
+}
+.boost-button-container {
+    text-align: center; /* Centra il pulsante */
+    margin-top: 20px; /* Margine sopra il pulsante */
+}
+
+.boost-button {
+    padding: 10px 20px; /* Padding interno */
+    background-color: #009999; /* Colore di sfondo del pulsante */
+    color: white; /* Colore del testo */
+    border: none; /* Nessun bordo */
+    border-radius: 5px; /* Angoli arrotondati */
+    cursor: pointer; /* Cursore a mano */
+    font-size: 1em; /* Dimensione del font */
+    transition: background-color 0.3s ease; /* Transizione per il passaggio del mouse */
+}
+
+.boost-button:hover {
+    background-color: #007b7b; /* Colore al passaggio del mouse */
+}
+.popular-tours-section {
+    padding: 60px 20px; /* Maggiore padding per una sezione più grande */
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.popular-tours-section h2 {
+    color: #009999;
+    margin-bottom: 40px; /* Maggiore margine sotto il titolo */
+    font-size: 2em; /* Aumenta la dimensione del titolo */
+}
+
+.destination-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Due colonne per schermi piccoli */
+    gap: 20px; /* Spazio tra le destinazioni */
+}
+
+@media (min-width: 768px) {
+    .destination-container {
+        grid-template-columns: repeat(4, 1fr); /* Quattro colonne per schermi più grandi */
+    }
+}
+
+.destination-item {
+    position: relative; /* Necessario per la sovrapposizione del testo */
+    overflow: hidden; /* Nascondi qualsiasi overflow */
+    border-radius: 8px;
+}
+
+.destination-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; /* Effetto zoom al passaggio del mouse */
+}
+
+.destination-item:hover img {
+    transform: scale(1.1); /* Zoom dell'immagine al passaggio del mouse */
+}
+
+.destination-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombra per il testo */
+    text-align: center;
+}
+
+.destination-text h3 {
+    font-size: 2em; /* Aumenta la dimensione del testo */
+}
+.responsive-video {
+    width: 100%; /* Imposta la larghezza al 100% del contenitore */
+    height: auto; /* Mantiene l'aspetto proporzionale */
+    max-width: 800px; /* Imposta una larghezza massima, se necessario */
+    display: block; /* Rimuove eventuali spazi indesiderati */
+    margin: 0 auto; /* Centra il video nel contenitore */
+}

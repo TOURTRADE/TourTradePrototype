@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOURTRADE - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="search-filters.css">
+</head>
+<body>
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            Welcome To TourTrade Prototype <span class="separator">➜</span> 
+            The Unique Travel Marketplace <span class="separator">➜</span> 
+            COMING SOON
+        </div>
+    </div>
+    <header class="main-header">
+        <div class="header-left">
+            <img src="logo.png" alt="TOURTRADE Logo" class="logo">
+        </div>
+        <div class="header-right">
+            <div class="dropdown">
+                <button class="dropbtn">☰</button>
+                <div class="dropdown-content">
+                    <h3>DESTINAZIONI</h3>
+                    <a href="#">Medio Oriente ></a>
+                    <a href="#">Africa ></a>
+                    <a href="#">Asia ></a>
+                    <a href="#">Oceania ></a>
+                    <a href="#">Americhe ></a>
+                    <a href="#">Europa ></a>
+                    <h3>IDEA DI VIAGGIO</h3>
+                    <a href="#">Un weekend a Istanbul</a>
+                    <a href="#">Rovaniemi evasione d'inverno</a>
+                    <a href="#">Voyager desert</a>
+                    <a href="#">Viaggi con volo incluso</a>
+                    <a href="#">Vacanze sportive invernali</a>
+                    <a href="#">Aurora boreale</a>
+                    <a href="#">Città europee</a>
+                    <h3>ABOUT</h3>
+                    <a href="#">Chi Siamo</a>
+                    <a href="#">Contatti</a>
+                    <a href="#">Lavora con noi</a>
+                </div>
+            </div>
+            <div class="personal-icon" onclick="togglePersonalArea(event)">
+                <img src="user-icon.png" alt="Area Personale" class="user-icon">
+            </div>
+            <div id="personalArea" class="personal-area hidden">
+                <h3>AREA PERSONALE</h3>
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="video-background">
+        <video autoplay muted loop id="backgroundVideo">
+            <source src="video.mp4" type="video/mp4">
+            Il tuo browser non supporta i video.
+        </video>
+        <div class="search-container">
+            <div class="search-group">
+                <input type="text" class="search-bar" placeholder="Cerca pacchetto per destinazione">
+                <input type="text" class="search-bar" placeholder="Cerca tour per destinazione">
+                <button class="search-button" onclick="searchPackages()">Cerca Pacchetto</button>
+                <button class="search-button" onclick="searchTours()">Cerca Tour</button>
+            </div>
+            <button class="filter-button" onclick="toggleFilterSidebar()">Cerca con Filtri</button>
+        </div>
+    </div>
+
+    <!-- Sidebar dei filtri -->
+    <div id="filter-sidebar" class="filter-sidebar">
+        <div class="filter-header">
+            <h3>Filtri di Ricerca</h3>
+            <button onclick="toggleFilterSidebar()">Chiudi</button>
+        </div>
+        <div class="search-filter">
+            <input type="text" id="filter-search" placeholder="Cerca...">
+        </div>
+        <div class="filter-section">
+            <h4 onclick="togglePackageFilters()">Filtri Pacchetti di Viaggio</h4>
+            <div id="package-filters" class="filter-content hidden">
+                <label for="destination">Destinazione:</label>
+                <input type="text" id="destination" placeholder="Es. Roma">
+                <label for="departure-date">Date di Partenza:</label>
+                <input type="date" id="departure-date">
+                <label>
+                    <input type="checkbox" id="whole-month"> Tutto il mese
+                </label>
+                <label for="price-range">Budget:</label>
+                <input type="number" id="price-min" placeholder="Min">
+                <input type="number" id="price-max" placeholder="Max">
+                <label for="flight-included">Volo Incluso:</label>
+                <input type="checkbox" id="flight-included">
+                <label for="package-type">Tipologia di Pacchetto:</label>
+                <select id="package-type" multiple>
+                    <option value="relax">Relax</option>
+                    <option value="avventura">Avventura</option>
+                    <option value="culturale">Culturale</option>
+                    <option value="famiglia">Famiglia</option>
+                    <option value="romantico">Romantico</option>
+                </select>
+                <label for="accommodation-type">Tipo di Sistemazione:</label>
+                <select id="accommodation-type">
+                    <option value="hotel">Hotel</option>
+                    <option value="appartamento">Appartamento</option>
+                    <option value="resort">Resort</option>
+                    <option value="ostello">Ostello</option>
+                </select>
+                <label for="last-minute">Last Minute:</label>
+                <input type="checkbox" id="last-minute">
+                <button onclick="applyPackageFilters()">Applica Filtri Pacchetti</button>
+            </div>
+        </div>
+        <div class="filter-section">
+            <h4 onclick="toggleTourFilters()">Filtri Tour & Esperienze</h4>
+            <div id="tour-filters" class="filter-content hidden">
+                <label for="tour-location">Destinazione:</label>
+                <input type="text" id="tour-location" placeholder="Es. Venezia">
+                <label for="tour-type">Tipo di Tour:</label>
+                <select id="tour-type" multiple>
+                    <option value="culturale">Culturale</option>
+                    <option value="gastronomico">Gastronomico</option>
+                    <option value="avventuroso">Avventuroso</option>
+                    <option value="notturno">Notturno</option>
+                    <option value="guidato">Guidato</option>
+                    <option value="autoguidato">Autoguidato</option>
+                </select>
+                <label for="tour-duration">Durata del Tour:</label>
+                <input type="text" id="tour-duration" placeholder="Es. 3 ore">
+                <label for="tour-date">Data Disponibile:</label>
+                <input type="date" id="tour-date">
+                <label for="tour-price-range">Prezzo:</label>
+                <input type="number" id="tour-price-min" placeholder="Min">
+                <input type="number" id="tour-price-max" placeholder="Max">
+                <label for="group-size">Dimensione del Gruppo:</label>
+                <input type="number" id="group-size" placeholder="Max partecipanti">
+                <label for="activity-level">Livello di Attività:</label>
+                <select id="activity-level">
+                    <option value="leggero">Leggero</option>
+                    <option value="moderato">Moderato</option>
+                    <option value="impegnativo">Impegnativo</option>
+                </select>
+                <label for="reviews">Recensioni e Valutazioni:</label>
+                <select id="reviews">
+                    <option value="4-stelle">4 stelle e più</option>
+                    <option value="5-stelle">5 stelle</option>
+                </select>
+                <button onclick="applyTourFilters()">Applica Filtri Tour & Esperienza</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="diagonal-divider divider-1"></div>
+    
+    <!-- Sezione Come Funziona -->
+    <section class="how-it-works">
+        <h2>Come Funziona TOURTRADE?</h2>
+        <div class="info-blocks">
+            <div class="info-block">
+                <img src="image1.jpg" alt="Immagine 1">
+                <h3>Unisciti a TOURTRADE</h3>
+                <p>Sei un'agenzia di viaggi o un tour operator? Elenca facilmente i tuoi pacchetti viaggio o tour guidati e connettiti con viaggiatori in tutto il mondo. Iscriviti ora, carica i dettagli delle tue offerte, imposta i tuoi prezzi e filtri e inizia ad accettare prenotazioni.</p>
+            </div>
+            <div class="info-block">
+                <img src="image2.jpg" alt="Immagine 2">
+                <h3>Trova la tua prossima avventura</h3>
+                <p>Cerchi un viaggio indimenticabile o un tour guidato unico? Utilizza le nostre opzioni di ricerca e filtraggio per trovare pacchetti viaggio o tour che soddisfino le tue preferenze. Sfoglia per destinazione, budget, disponibilità e altro ancora.</p>
+            </div>
+            <div class="info-block">
+                <img src="image3.jpg" alt="Immagine 3">
+                <h3>Prenota in sicurezza</h3>
+                <p>Pronto per prenotare? Assicura il tuo posto con le nostre opzioni di pagamento sicure e affidabili. Il tuo pagamento è protetto e sarà rilasciato al fornitore solo una volta che il tuo viaggio sarà confermato.</p>
+            </div>
+        </div>
+        <div class="join-button-container">
+            <button class="dashboard-button" onclick="location.href='signup.html'">Unisciti Ora</button>
+        </div>
+    </section>
+
+    <div class="diagonal-divider divider-2"></div>
+    
+    <section class="trending-section">
+        <h2><span role="img" aria-label="fuoco">🔥</span> Agenzie in Trending</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item ad">
+                    <div class="ad-label">ADV</div>
+                    <h4>Agenzia X</h4>
+                    <img src="logo-agency-x.png" alt="Logo Agenzia X">
+                    <p>Pacchetto Avventura: Scopri le meraviglie della natura!</p>
+                </div>
+                <div class="carousel-item">
+                    <h4>Agenzia Y</h4>
+                    <img src="logo-agency-y.png" alt="Logo Agenzia Y">
+                    <p>Pacchetto Relax: Rilassati e goditi il sole!</p>
+                </div>
+                <!-- Altri elementi delle agenzie -->
+            </div>
+        </div>
+        <div class="diagonal-divider divider-3"></div>
+    </section>
+
+    <section class="popular-destinations-section">
+        <h2><span role="img" aria-label="mappa">🗺️</span> Destinazioni Popolari</h2>
+        <div class="destination-container">
+            <div class="destination-item">
+                <img src="firenze.jpg" alt="Firenze">
+                <div class="destination-text">
+                    <h3>Firenze</h3>
+                </div>
+            </div>
+            <div class="destination-item">
+                <img src="roma.jpg" alt="Roma">
+                <div class="destination-text">
+                    <h3>Roma</h3>
+                </div>
+            </div>
+            <div class="destination-item">
+                <img src="milano.jpg" alt="Milano">
+                <div class="destination-text">
+                    <h3>Milano</h3>
+                </div>
+            </div>
+            <div class="destination-item">
+                <img src="venezia.jpg" alt="Venezia">
+                <div class="destination-text">
+                    <h3>Venezia</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="diagonal-divider divider-4"></div>
+    
+    <section class="trending-section">
+        <h2><span role="img" aria-label="fuoco">🔥</span> Tour Operator in Trending</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item ad">
+                    <div class="ad-label">ADV</div>
+                    <h4>Operatore Y</h4>
+                    <img src="logo-operator-y.png" alt="Logo Operatore Y">
+                    <p>Tour Gastronomico: Assapora i migliori piatti locali!</p>
+                </div>
+                <div class="carousel-item">
+                    <h4>Operatore Z</h4>
+                    <img src="logo-operator-z.png" alt="Logo Operatore Z">
+                    <p>Tour Culturale: Esplora la storia!</p>
+                </div>
+                <!-- Altri elementi degli operatori -->
+            </div>
+        </div>
+        <div class="diagonal-divider divider-5"></div>
+    </section>
+
+    <section class="popular-tours-section">
+        <h2><span role="img" aria-label="fuoco">🔥</span> Tipi di Tour e Esperienze Piu Ricercate Oggi!</h2>
+        <div class="destination-container">
+            <div class="destination-item">
+                <img src="winetour.jpg" alt="Wine Tour">
+                <div class="destination-text">
+                    <h3>Wine Tour</h3>
+                </div>
+            </div>
+            <div class="destination-item">
+                <img src="passeggiata-a-cavallo.jpg" alt="Passeggiata a Cavallo">
+                <div class="destination-text">
+                    <h3>Passeggiata a Cavallo</h3>
+                </div>
+            </div>
+            <div class="destination-item">
+                <img src="rooftop-tour.jpg" alt="Rooftop Tour">
+                <div class="destination-text">
+                    <h3>Rooftop Tour</h3>
+                </div>
+            </div>
+            <div class="destination-item">
+                <img src="surf-training.jpg" alt="Surf Training">
+                <div class="destination-text">
+                    <h3>Surf Training</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="diagonal-divider divider-5"></div>
+    
+    <section class="trending-section">
+        <h2><span role="img" aria-label="fuoco">🔥</span> Pacchetti in Trending</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item ad">
+                    <div class="ad-label">ADV</div>
+                    <h4>Pacchetto Mare</h4>
+                    <img src="logo-package.png" alt="Pacchetto Mare">
+                    <p>Goditi il sole e il mare in questo pacchetto esclusivo!</p>
+                </div>
+                <div class="carousel-item">
+                    <h4>Pacchetto Avventura</h4>
+                    <img src="logo-adventure-package.png" alt="Pacchetto Avventura">
+                    <p>Vivi un'avventura indimenticabile!</p>
+                </div>
+                <!-- Altri elementi dei pacchetti -->
+            </div>
+        </div>
+        <div class="diagonal-divider divider-6"></div>
+    </section>
+
+    <section class="boosting-section">
+        <h2><span role="img" aria-label="fulmine">⚡</span> Come Funzionano i Boost?</h2>
+        <h3>Cosa sono i Boost?</h3>
+        <p>I Boost sono un modo potente per aumentare la visibilità del tuo pacchetto, agenzia, tour o tour operator su TOURTRADE. Acquistando un pacchetto Boost, puoi moltiplicare il punteggio di visibilità del tuo prodotto. I Boost disponibili sono:
+        <ul>
+            <li><strong>X2:</strong> Raddoppia il tuo punteggio di visibilità per un mese.</li>
+            <li><strong>X3:</strong> Triplica il tuo punteggio di visibilità per un mese</li>
+            <li><strong>X5:</strong> Quintuplica il tuo punteggio di visibilità per un mese.</li>
+        </ul>
+        </p>
+        
+        <h3>Come vengono applicati i Boost?</h3>
+        <p>Quando acquisti un Boost, il tuo punteggio attuale viene moltiplicato secondo il tipo di Boost selezionato. Questo punteggio potenziato aiuta a posizionare il tuo pacchetto, agenzia, tour o tour operator in posizioni più elevate nella classifica di visibilità sulla piattaforma. Puoi acquistare più Boost per aumentare ulteriormente il tuo punteggio.</p>
+        
+        <h3>Boost garantisce che il tuo prodotto sarà in evidenza?</h3>
+        <p>No, i Boost migliorano solo il punteggio di visibilità esistente, ma non garantiscono automaticamente che il tuo prodotto raggiunga il primo posto. L'algoritmo di ranking considera anche altri fattori, quindi un prodotto ben realizzato avrà maggiore possibilità di successo.</p>
+        
+        <h3>Qualsiasi pacchetto può essere potenziato?</h3>
+        <p>La maggior parte dei pacchetti, tour e agenzie su TOURTRADE può essere potenziata, ma ci sono eccezioni. I prodotti inattivi da oltre 24 ore o con segnali di rischio non possono utilizzare i Boost.</p>
+    </section>
+
+    <div class="boost-button-container">
+        <button class="boost-button" onclick="buyBoost()">BUY BOOST NOW</button>
+    </div>
+    <div class="diagonal-divider divider-7"></div>
+
+    <section class="trending-section">
+        <h2><span role="img" aria-label="fuoco">🔥</span> Tour in Trending</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item ad">
+                    <div class="ad-label">ADV</div>
+                    <h4>Tour Culturale</h4>
+                    <img src="logo-tour.png" alt="Tour Culturale">
+                    <p>Esplora la storia con il nostro tour culturale guidato!</p>
+                </div>
+                <div class="carousel-item">
+                    <h4>Tour Avventuroso</h4>
+                    <img src="logo-adventurous-tour.png" alt="Tour Avventuroso">
+                    <p>Scopri la natura in modo emozionante!</p>
+                </div>
+                <!-- Altri elementi dei tour -->
+            </div>
+        </div>
+        <div class="diagonal-divider divider-8"></div>
+    </section>
+
+    <section class="video-section">
+        <h2>Stop Alle Truffe</h2>
+        <video autoplay loop controls class="responsive-video" id="aboutVideo">
+            <source src="chisiamo.mp4" type="video/mp4">
+            Il tuo browser non supporta i video.
+        </video>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 TOURTRADE. Tutti i diritti riservati.</p>
+            <nav>
+                <a href="about.html">Chi Siamo</a> | 
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Termini e Condizioni</a> | 
+                <a href="contact.html">Contatti</a> | 
+                <a href="careers.html">Lavora con Noi</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

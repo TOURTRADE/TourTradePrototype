@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offerta Esperienza - TOURTRADE</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .offer-container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+        }
+
+        .offer-details {
+            flex: 3; /* Occupy 3 parts of the flex container */
+            padding: 20px;
+        }
+
+        .offer-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .shop-info {
+            flex: 1; /* Occupy 1 part of the flex container */
+            background-color: #eaeaea;
+            padding: 15px;
+            border-radius: 10px;
+            margin-left: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        #backgroundVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h2, h3 {
+            color: #283618;
+        }
+
+        h4 {
+            color: #606c38;
+        }
+
+        .similar-packages {
+            margin-top: 40px;
+        }
+
+        .similar-packages h3 {
+            text-align: center;
+            color: #606c38;
+        }
+
+        .package {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .package img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Offerta Esperienza</h1>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Il Mio Shop</a>
+    </header>
+
+    <div class="video-background">
+        <video autoplay muted loop id="backgroundVideo">
+            <source src="video.mp4" type="video/mp4">
+            Il tuo browser non supporta i video.
+        </video>
+    </div>
+
+    <div class="offer-container">
+        <div class="offer-details">
+            <h2>Esperienza: Tour Gastronomico a Roma</h2>
+            <img src="roma.jpg" alt="Tour Gastronomico" class="offer-image">
+            <p><strong>Prezzo:</strong> €150</p>
+            <p><strong>Durata:</strong> 4 ore</p>
+            <p><strong>Data di partenza:</strong> 15 Aprile 2024</p>
+            
+            <h3>Dettagli dell'Esperienza:</h3>
+            <p>Scopri la cucina romana con un tour gastronomico che ti porterà attraverso i mercati locali e ristoranti storici.</p>
+            
+            <h3>Incluso nell'esperienza:</h3>
+            <ul>
+                <li><strong>Visita Guidata:</strong> Tour della città con guida esperta.</li>
+                <li><strong>Degustazioni:</strong> Assaggio di piatti tipici in vari ristoranti.</li>
+                <li><strong>Trasporti:</strong> Transfer privato incluso.</li>
+            </ul>
+
+            <h3>Itinerario:</h3>
+            <ol>
+                <li><strong>Incontro con la guida</strong> presso il punto di partenza.</li>
+                <li><strong>Visita al Mercato di Campo de' Fiori</strong> con degustazione di prodotti freschi.</li>
+                <li><strong>Pranzo in una Trattoria Tradizionale</strong>.</li>
+                <li><strong>Degustazione di Vini</strong> presso una cantina locale.</li>
+                <li><strong>Ritorno al punto di partenza</strong>.</li>
+            </ol>
+
+            <button onclick="bookExperience()">Prenota Ora</button>
+        </div>
+
+        <div class="shop-info">
+            <h3>Informazioni sullo Shop</h3>
+            <p><strong>Nome Shop:</strong> Roma Food Tours</p>
+            <p><strong>Recensioni:</strong></p>
+            <div>
+                <p>⭐️⭐️⭐️⭐️⭐️</p>
+                <p>“Un tour culinario straordinario, altamente raccomandato!”</p>
+                <p>⭐️⭐️⭐️⭐️</p>
+                <p>“Ottima esperienza, ma ci aspetteremmo più varietà di cibo.”</p>
+            </div>
+            <button onclick="visitShop()">Visita lo Shop</button>
+        </div>
+    </div>
+
+    <div class="similar-packages">
+        <h3>Pacchetti Simili</h3>
+        <div class="package">
+            <img src="package1.jpg" alt="Pacchetto 1">
+            <h4>Pacchetto: Weekend a Venezia</h4>
+            <p>€400</p>
+        </div>
+        <div class="package">
+            <img src="package2.jpg" alt="Pacchetto 2">
+            <h4>Pacchetto: Avventura nelle Dolomiti</h4>
+            <p>€650</p>
+        </div>
+        <div class="package">
+            <img src="package3.jpg" alt="Pacchetto 3">
+            <h4>Pacchetto: Relax a Capri</h4>
+            <p>€1200</p>
+        </div>
+    </div>
+
+    <script>
+        function bookExperience() {
+            alert('Prenotazione completata con successo!');
+            // Aggiungere logica per la prenotazione
+        }
+
+        function visitShop() {
+            window.location.href = 'shop.html'; // Reindirizza allo shop
+        }
+    </script>
+</body>
+</html>

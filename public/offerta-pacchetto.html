@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offerta Pacchetto - TOURTRADE</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .offer-container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+        }
+
+        .offer-details {
+            flex: 3; /* Occupy 3 parts of the flex container */
+            padding: 20px;
+        }
+
+        .offer-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .shop-info {
+            flex: 1; /* Occupy 1 part of the flex container */
+            background-color: #eaeaea;
+            padding: 15px;
+            border-radius: 10px;
+            margin-left: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        #backgroundVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h2, h3 {
+            color: #283618;
+        }
+
+        h4 {
+            color: #606c38;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #606c38; /* Color from the palette */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #4a5731; /* Darker shade on hover */
+        }
+
+        .similar-packages {
+            margin-top: 40px;
+        }
+
+        .similar-packages h3 {
+            text-align: center;
+            color: #606c38;
+        }
+
+        .package {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .package img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Offerta Pacchetto</h1>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Il Mio Shop</a>
+    </header>
+
+    <div class="video-background">
+        <video autoplay muted loop id="backgroundVideo">
+            <source src="video.mp4" type="video/mp4">
+            Il tuo browser non supporta i video.
+        </video>
+    </div>
+
+    <div class="offer-container">
+        <div class="offer-details">
+            <h2>Pacchetto: Viaggio in Toscana</h2>
+            <img src="firenze.jpg" alt="Viaggio in Toscana" class="offer-image"> <!-- Updated image source -->
+            <p><strong>Prezzo:</strong> €1200</p>
+            <p><strong>Durata:</strong> 7 giorni / 6 notti</p>
+            <p><strong>Data di partenza:</strong> 1 Aprile 2024</p>
+            
+            <h3>Dettagli del Pacchetto:</h3>
+            <p>Questo pacchetto include un'indimenticabile esperienza di viaggio in Toscana, dove potrai esplorare i paesaggi mozzafiato e degustare i sapori autentici della cucina italiana.</p>
+            
+            <h3>Incluso nel pacchetto:</h3>
+            <ul>
+                <li><strong>Soggiorno in Hotel:</strong> Hotel 4 Stelle, colazione inclusa.</li>
+                <li><strong>Transfer:</strong> Transfer dall’aeroporto di Firenze all'hotel e viceversa.</li>
+                <li><strong>Visite Guidate:</strong> Tour di mezza giornata a Siena e San Gimignano.</li>
+                <li><strong>Pasti inclusi:</strong> Colazione e cena presso ristoranti tipici.</li>
+                <li><strong>Attività:</strong> Corso di cucina toscana e degustazione di vini.</li>
+            </ul>
+
+            <h3>Itinerario Dettagliato:</h3>
+            <ol>
+                <li><strong>Giorno 1:</strong> Arrivo a Firenze, transfer all'hotel e incontro con il nostro staff.</li>
+                <li><strong>Giorno 2:</strong> Visita di Firenze con guida privata, inclusa la Galleria degli Uffizi.</li>
+                <li><strong>Giorno 3:</strong> Escursione a Siena, con pranzo in un ristorante tipico.</li>
+                <li><strong>Giorno 4:</strong> Corso di cucina in una villa toscana.</li>
+                <li><strong>Giorno 5:</strong> Visita di San Gimignano e degustazione di vini.</li>
+                <li><strong>Giorno 6:</strong> Giornata libera per esplorare Firenze a piacere.</li>
+                <li><strong>Giorno 7:</strong> Check-out e transfer per l'aeroporto.</li>
+            </ol>
+
+            <button class="button" onclick="bookPackage()">Prenota Ora</button>
+            <button class="button" onclick="personalizeTrip()">Personalizza il tuo viaggio</button>
+        </div>
+
+        <div class="shop-info">
+            <h3>Informazioni sullo Shop</h3>
+            <p><strong>Nome Shop:</strong> Toscana Travel Co.</p>
+            <p><strong>Recensioni:</strong></p>
+            <div>
+                <p>⭐️⭐️⭐️⭐️⭐️</p>
+                <p>“Un'esperienza fantastica, tutto era perfetto!”</p>
+                <p>⭐️⭐️⭐️⭐️</p>
+                <p>“Il tour è stato molto interessante e ben organizzato.”</p>
+                <p>⭐️⭐️⭐️</p>
+                <p>“Buona esperienza, ma ci sono stati piccoli problemi con il trasporto.”</p>
+            </div>
+            <button class="button" onclick="visitShop()">Visita lo Shop</button>
+        </div>
+    </div>
+
+    <div class="similar-packages">
+        <h3>Pacchetti Simili</h3>
+        <div class="package">
+            <img src="package1.jpg" alt="Pacchetto 1">
+            <h4>Pacchetto: Roma in 5 giorni</h4>
+            <p>€800</p>
+        </div>
+        <div class="package">
+            <img src="package2.jpg" alt="Pacchetto 2">
+            <h4>Pacchetto: Avventura in Costa Amalfitana</h4>
+            <p>€950</p>
+        </div>
+        <div class="package">
+            <img src="package3.jpg" alt="Pacchetto 3">
+            <h4>Pacchetto: Sicilia da scoprire</h4>
+            <p>€1100</p>
+        </div>
+    </div>
+
+    <script>
+        function bookPackage() {
+            alert('Prenotazione completata con successo!');
+            // Aggiungere logica per la prenotazione
+        }
+
+        function visitShop() {
+            window.location.href = 'shop.html'; // Reindirizza allo shop
+        }
+
+        function personalizeTrip() {
+            window.location.href = 'tourchat.html'; // Reindirizza alla chat
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavora con Noi - TOURTRADE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="search-filters.css">
+    <style>
+        body {
+            font-family: 'Muli', sans-serif;
+            color: #283618;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        #backgroundVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background-color: #606c38;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #4a5731;
+        }
+        .faq {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-background">
+        <video autoplay muted loop id="backgroundVideo">
+            <source src="video.mp4" type="video/mp4">
+            Il tuo browser non supporta i video.
+        </video>
+    </div>
+
+    <div class="content">
+        <h1>Lavora con Noi - Programma di Affiliate Marketing</h1>
+        <p>Unisciti al nostro programma di affiliate marketing e inizia a guadagnare promuovendo TOURTRADE! Siamo alla ricerca di partner motivati che condividano la nostra passione per i viaggi.</p>
+
+        <h2>Benefici del Programma</h2>
+        <ul>
+            <li>Guadagni competitivi per ogni vendita che generi.</li>
+            <li>Accesso a materiale promozionale esclusivo.</li>
+            <li>Supporto dedicato per aiutarti a massimizzare i tuoi guadagni.</li>
+            <li>Possibilità di crescere insieme a noi in un settore in espansione.</li>
+        </ul>
+
+        <h2>Come Iniziare</h2>
+        <p>È semplice! Segui questi passaggi:</p>
+        <ol>
+            <li>Registrati per il nostro programma di affiliate marketing.</li>
+            <li>Ricevi il tuo link di affiliazione unico.</li>
+            <li>Inizia a promuovere le nostre offerte sui tuoi canali.</li>
+            <li>Guarda i guadagni arrivare!</li>
+        </ol>
+
+        <h2>Domande Frequenti (FAQ)</h2>
+        <div class="faq">
+            <strong>D: Chi può partecipare al programma?</strong>
+            <p>R: Chiunque abbia una passione per i viaggi e voglia guadagnare condividendo le nostre offerte.</p>
+
+            <strong>D: Quanto guadagno con ogni vendita?</strong>
+            <p>R: Offriamo una percentuale competitiva su ogni vendita generata tramite il tuo link di affiliazione.</p>
+
+            <strong>D: Come vengono pagati i guadagni?</strong>
+            <p>R: I pagamenti vengono effettuati mensilmente tramite bonifico bancario o PayPal.</p>
+        </div>
+
+        <a href="signup.html" class="button">Registrati Ora</a>
+    </div>
+
+</body>
+</html>

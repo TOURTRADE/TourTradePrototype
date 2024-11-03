@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Agenzia - TOURTRADE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard-agency.css">
+    <style>
+        /* Stile aggiuntivo per il cerchio dell'immagine profilo */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .profile-header .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ccc; /* Colore di sfondo di default */
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .shop-link {
+            margin-left: auto;
+            font-size: 18px;
+            text-decoration: none;
+            color: #009999; /* Colore del link */
+        }
+        
+        .shop-link:hover {
+            text-decoration: underline; /* Sottolinea il link al passaggio del mouse */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">Home</a>
+        <h1>Dashboard Agenzia</h1>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Sezioni</h3>
+            <ul>
+                <li><button onclick="toggleSection('company-info')">Dati Aziendali</button></li>
+                <li><button onclick="toggleTourChat()">TourChat</button></li>
+                <li><button onclick="toggleSection('new-package')">Posta un Nuovo Pacchetto</button></li>
+                <li><button onclick="toggleSection('bookings')">Prenotazioni Ricevute</button></li>
+                <li><button onclick="toggleSection('sales-analysis')">Analisi delle Vendite</button></li>
+                <li><button onclick="toggleSection('boost')">Boost Your Agency</button></li>
+                <li><button onclick="toggleSection('plan')">Piano Abbonamento</button></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="profile-header">
+                <div class="profile-pic"></div> <!-- Qui andrà l'immagine del profilo -->
+                <span id="agency-name">Nome dell'Agenzia</span>
+                <a href="shop.html" class="shop-link">Il Mio Shop</a>
+            </div>
+
+            <section class="dashboard-section hidden" id="company-info">
+                <h2>Dati Aziendali e Bancari</h2>
+                <label for="vat-number">Partita IVA</label>
+                <input type="text" id="vat-number" placeholder="Inserisci Partita IVA" required>
+                <label for="iban">IBAN</label>
+                <input type="text" id="iban" placeholder="Inserisci IBAN" required>
+                <label for="swift">SWIFT/BIC</label>
+                <input type="text" id="swift" placeholder="Inserisci SWIFT/BIC (opzionale)">
+                <label for="company-address">Indirizzo della Sede Legale</label>
+                <input type="text" id="company-address" placeholder="Inserisci l'indirizzo completo" required>
+                <label for="phone">Numero di Telefono Aziendale</label>
+                <input type="tel" id="phone" placeholder="Inserisci il numero di telefono aziendale">
+                <label for="website">Sito Web Aziendale</label>
+                <input type="url" id="website" placeholder="Inserisci URL del sito web aziendale">
+                <label for="document-upload">Upload Documenti Legali</label>
+                <input type="file" id="document-upload" accept=".pdf,.jpg,.png">
+                <label for="payment-frequency">Frequenza di Pagamento</label>
+                <select id="payment-frequency">
+                    <option value="settimanale">Settimanale</option>
+                    <option value="mensile">Mensile</option>
+                    <option value="per-prenotazione">Per Prenotazione Completata</option>
+                </select>
+                <button type="submit">Salva Informazioni Aziendali</button>
+            </section>
+
+            <section class="dashboard-section hidden" id="tourchat">
+                <h2>TourChat</h2>
+                <h3>Chat con <span id="chat-agent-name"></span></h3>
+                <div id="messages"></div>
+                <input type="text" id="message-input" placeholder="Scrivi un messaggio...">
+                <button id="send-button" onclick="handleSendMessage()">Invia</button>
+                <div id="offers">
+                    <h4>Invia un'offerta</h4>
+                    <label for="offer-type">Tipo di Offerta:</label>
+                    <select id="offer-type" onchange="toggleOfferDetails()">
+                        <option value="package">Pacchetto</option>
+                        <option value="tour">Tour</option>
+                    </select>
+                    <div id="package-offer-details" class="hidden">
+                        <h5>Dettagli Pacchetto</h5>
+                        <label for="package-title">Titolo Pacchetto</label>
+                        <input type="text" id="package-title" placeholder="Titolo del pacchetto" required>
+                        <label for="package-description">Descrizione</label>
+                        <textarea id="package-description" placeholder="Descrizione dettagliata" required></textarea>
+                        <label for="destination">Destinazione</label>
+                        <input type="text" id="destination" placeholder="Es. Toscana, Italia" required>
+                        <label for="departure">Paese di Partenza</label>
+                        <input type="text" id="departure" placeholder="Paese di partenza" required>
+                        <label for="relax-percentage">Percentuale Relax</label>
+                        <input type="number" id="relax-percentage" placeholder="Es. 60" min="0" max="100" step="20"> %
+                        <label for="cultural-percentage">Percentuale Culturale</label>
+                        <input type="number" id="cultural-percentage" placeholder="Es. 20" min="0" max="100" step="20"> %
+                        <label for="wild-percentage">Percentuale Wild</label>
+                        <input type="number" id="wild-percentage" placeholder="Es. 20" min="0" max="100" step="20"> %
+                        <label for="last-minute">Opzione Last-Minute</label>
+                        <input type="checkbox" id="last-minute">
+                        <label for="flight-included">Volo Incluso</label>
+                        <select id="flight-included" onchange="toggleFlightDeparture()">
+                            <option value="yes">Sì</option>
+                            <option value="no">No</option>
+                        </select>
+                        <div id="flight-departure-section" class="hidden">
+                            <label for="flight-departure">Città di Partenza del Volo</label>
+                            <input type="text" id="flight-departure" placeholder="Es. Milano">
+                        </div>
+                        <label>Intervalli di Date e Prezzi</label>
+                        <div id="date-price-section">
+                            <div class="date-price-entry">
+                                <input type="date" placeholder="Data di Inizio" class="start-date" required>
+                                <input type="date" placeholder="Data di Fine" class="end-date" required>
+                                <input type="number" placeholder="Prezzo (€)" class="price" required>
+                            </div>
+                        </div>
+                        <button type="button" id="add-date-price" onclick="addDatePrice()">Aggiungi un'altra data</button>
+                        <label for="duration">Durata dell'Offerta (giorni)</label>
+                        <input type="number" id="duration" placeholder="Es. 7" required>
+                        <label for="offer-category">Seleziona Categoria</label>
+                        <select id="offer-category">
+                            <option value="last-minute">Last Minute</option>
+                            <option value="cruise">Crociere</option>
+                            <option value="intercontinental">Viaggi Intercontinentali</option>
+                            <option value="adventure">Pacchetti Avventura</option>
+                            <option value="cultural">Tour Culturali</option>
+                            <option value="romantic">Weekend Romantici</option>
+                            <option value="group">Viaggi di Gruppo</option>
+                            <option value="family">Offerte Famiglia</option>
+                            <option value="student">Viaggi per Studenti</option>
+                            <option value="early-bird">Prenotazioni Anticipate</option>
+                        </select>
+                    </div>
+
+                    <div id="tour-offer-details" class="hidden">
+                        <h5>Dettagli Tour</h5>
+                        <label for="tour-title">Titolo Tour</label>
+                        <input type="text" id="tour-title" placeholder="Titolo del tour" required>
+                        <label for="tour-description">Descrizione</label>
+                        <textarea id="tour-description" placeholder="Descrizione dettagliata" required></textarea>
+                        <label for="tour-location">Location</label>
+                        <input type="text" id="tour-location" placeholder="Es. Roma" required>
+                        <label for="tour-price">Prezzo (€)</label>
+                        <input type="number" id="tour-price" placeholder="Prezzo del tour" required>
+                        <label for="tour-date">Data Tour</label>
+                        <input type="date" id="tour-date" required>
+                    </div>
+                    
+                    <button onclick="handleSendOffer()">Invia Offerta</button>
+                </div>
+            </section>
+
+            <section class="dashboard-section hidden" id="new-package">
+                <h2>Nuovo Pacchetto Viaggio</h2>
+                <form id="package-form">
+                    <label for="package-title">Titolo Pacchetto</label>
+                    <input type="text" id="package-title" placeholder="Titolo del pacchetto" required>
+                    <label for="package-description">Descrizione</label>
+                    <textarea id="package-description" placeholder="Descrizione dettagliata" required></textarea>
+                    <label for="destination">Destinazione</label>
+                    <input type="text" id="destination" placeholder="Es. Toscana, Italia" required>
+                    <label for="departure">Paese di Partenza</label>
+                    <input type="text" id="departure" placeholder="Paese di partenza" required>
+                    <label for="relax-percentage">Percentuale Relax</label>
+                    <input type="number" id="relax-percentage" placeholder="Es. 60" min="0" max="100" step="20"> %
+                    <label for="cultural-percentage">Percentuale Culturale</label>
+                    <input type="number" id="cultural-percentage" placeholder="Es. 20" min="0" max="100" step="20"> %
+                    <label for="wild-percentage">Percentuale Wild</label>
+                    <input type="number" id="wild-percentage" placeholder="Es. 20" min="0" max="100" step="20"> %
+                    <label for="last-minute">Opzione Last-Minute</label>
+                    <input type="checkbox" id="last-minute">
+                    <label for="flight-included">Volo Incluso</label>
+                    <select id="flight-included" onchange="toggleFlightDeparture()">
+                        <option value="yes">Sì</option>
+                        <option value="no">No</option>
+                    </select>
+                    <div id="flight-departure-section" class="hidden">
+                        <label for="flight-departure">Città di Partenza del Volo</label>
+                        <input type="text" id="flight-departure" placeholder="Es. Milano">
+                    </div>
+                    <label>Intervalli di Date e Prezzi</label>
+                    <div id="date-price-section">
+                        <div class="date-price-entry">
+                            <input type="date" placeholder="Data di Inizio" class="start-date" required>
+                            <input type="date" placeholder="Data di Fine" class="end-date" required>
+                            <input type="number" placeholder="Prezzo (€)" class="price" required>
+                        </div>
+                    </div>
+                    <button type="button" id="add-date-price" onclick="addDatePrice()">Aggiungi un'altra data</button>
+                    <label for="duration">Durata dell'Offerta (giorni)</label>
+                    <input type="number" id="duration" placeholder="Es. 7" required>
+                    <label for="offer-category">Seleziona Categoria</label>
+                    <select id="offer-category">
+                        <option value="last-minute">Last Minute</option>
+                        <option value="cruise">Crociere</option>
+                        <option value="intercontinental">Viaggi Intercontinentali</option>
+                        <option value="adventure">Pacchetti Avventura</option>
+                        <option value="cultural">Tour Culturali</option>
+                        <option value="romantic">Weekend Romantici</option>
+                        <option value="group">Viaggi di Gruppo</option>
+                        <option value="family">Offerte Famiglia</option>
+                        <option value="student">Viaggi per Studenti</option>
+                        <option value="early-bird">Prenotazioni Anticipate</option>
+                    </select>
+                </form>
+            </section>
+
+            <section class="dashboard-section hidden" id="bookings">
+                <h2>Prenotazioni Ricevute</h2>
+                <ul>
+                    <li>
+                        Prenotazione 1 - Cliente: Mario Rossi - 
+                        <button onclick="openChat('Mario Rossi')">Chatta</button>
+                        <button onclick="uploadDetails()">Carica Dettagli Viaggio</button>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="dashboard-section hidden" id="sales-analysis">
+                <h2>Analisi delle Vendite</h2>
+                <label for="time-interval">Intervallo di Tempo</label>
+                <select id="time-interval" onchange="updateSalesAnalysis()">
+                    <option value="day">Ultimo Giorno</option>
+                    <option value="week">Ultima Settimana</option>
+                    <option value="month">Ultimo Mese</option>
+                    <option value="year">Ultimo Anno</option>
+                </select>
+                <div id="sales-data">
+                    <p>Prenotazioni: <span id="bookings-count">-</span></p>
+                    <p>Ricavi: €<span id="revenue-amount">-</span></p>
+                </div>
+                <canvas id="salesChart" width="400" height="200"></canvas>
+            </section>
+
+            <section class="dashboard-section hidden" id="boost">
+                <h2>Boost Your Agency</h2>
+                <p>Cosa Sono i Boosts?</p>
+                <p>I Boosts sono un modo efficace per aumentare la visibilità di un’agenzia o di un’offerta su TOURTRADE. Acquistando un pacchetto Boost, è possibile migliorare temporaneamente il punteggio di tendenza della propria offerta, aiutandola a ottenere maggiore esposizione.</p>
+                <h4>Seleziona il Livello di Boost</h4>
+                <label>
+                    <input type="radio" name="boost-level" value="x2">
+                    Boost x2 - €19,90 al mese
+                </label><br>
+                <label>
+                    <input type="radio" name="boost-level" value="x3">
+                    Boost x3 - €24,90 al mese
+                </label><br>
+                <label>
+                    <input type="radio" name="boost-level" value="x5">
+                    Boost x5 - €35,90 al mese
+                </label><br>
+                <button type="submit">Attiva Boost Selezionato</button>
+            </section>
+
+            <section class="dashboard-section hidden" id="plan">
+                <h2>Piano Abbonamento</h2>
+                <p>Seleziona il piano che preferisci per accedere a funzionalità avanzate:</p>
+                <table class="subscription-table">
+                    <tr>
+                        <th>Caratteristiche</th>
+                        <th>Free Plan (0 €)</th>
+                        <th>Premium (19,90 €)</th>
+                        <th>Premium Gold (39,90 €)</th>
+                    </tr>
+                    <tr>
+                        <td>Commissioni Trattenute TOURTRADE</td>
+                        <td>10%</td>
+                        <td>7%</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Limite Postaggio Pacchetti</td>
+                        <td>10 pacchetti al mese</td>
+                        <td>50 pacchetti al mese</td>
+                        <td>Nessun limite</td>
+                    </tr>
+                    <tr>
+                        <td>Pubblicità nelle Offerte e Negozio</td>
+                        <td>Presente nelle offerte e negozio</td>
+                        <td>Presente solo nelle offerte</td>
+                        <td>Non presente</td>
+                    </tr>
+                    <tr>
+                        <td>Boost Incluso</td>
+                        <td>No boost</td>
+                        <td>Boost x2</td>
+                        <td>Boost x5</td>
+                    </tr>
+                </table>
+                <label><input type="radio" name="plan" value="free" checked> Free Plan</label>
+                <label><input type="radio" name="plan" value="premium"> Premium</label>
+                <label><input type="radio" name="plan" value="premium-gold"> Premium Gold</label>
+                <button>Salva Piano Selezionato</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Funzione per mostrare/nascondere le sezioni
+        function toggleSection(sectionId) {
+            const allSections = document.querySelectorAll('.dashboard-section');
+            allSections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.toggle('hidden'); // Mostra/nascondi la sezione selezionata
+                } else {
+                    section.classList.add('hidden'); // Nascondi le altre sezioni
+                }
+            });
+        }
+
+        // Funzione per gestire la selezione dell'offerta
+        function toggleOfferDetails() {
+            const offerType = document.getElementById('offer-type').value;
+            document.getElementById('package-offer-details').classList.toggle('hidden', offerType !== 'package');
+            document.getElementById('tour-offer-details').classList.toggle('hidden', offerType !== 'tour');
+        }
+
+        // Funzione per aprire la TourChat in una nuova finestra
+        function toggleTourChat() {
+            window.open('tourchat.html', '_blank', 'width=600,height=400'); // Apre una nuova finestra
+        }
+
+        // Funzione per caricare i messaggi
+        function loadMessages() {
+            fetch('http://localhost:3000/api/messages')
+                .then(response => response.json())
+                .then(data => {
+                    const messagesDiv = document.getElementById("messages");
+                    messagesDiv.innerHTML = ''; // Pulisci i messaggi esistenti
+                    data.forEach(msg => {
+                        const msgDiv = document.createElement("div");
+                        msgDiv.innerHTML = `<strong>${msg.sender}:</strong> ${msg.message}`;
+                        messagesDiv.appendChild(msgDiv);
+                    });
+                });
+        }
+
+        // Funzione per inviare un messaggio
+        function handleSendMessage() {
+            const message = document.getElementById("message-input").value;
+            if (message.trim() === '') return;
+
+            fetch('http://localhost:3000/api/messages', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sender: 'Agenzia', message: message, agent: document.getElementById("chat-agent-name").innerText })
+            }).then(response => {
+                document.getElementById("message-input").value = ''; // Pulisci il campo
+                loadMessages(); // Ricarica i messaggi
+            });
+        }
+
+        // Funzione per inviare un'offerta
+        function handleSendOffer() {
+            const offerType = document.getElementById('offer-type').value;
+            let offerData;
+
+            if (offerType === 'package') {
+                offerData = {
+                    title: document.getElementById("package-title").value,
+                    description: document.getElementById("package-description").value,
+                    destination: document.getElementById("destination").value,
+                    departure: document.getElementById("departure").value,
+                    relaxPercentage: document.getElementById("relax-percentage").value,
+                    culturalPercentage: document.getElementById("cultural-percentage").value,
+                    wildPercentage: document.getElementById("wild-percentage").value,
+                    lastMinute: document.getElementById("last-minute").checked,
+                    flightIncluded: document.getElementById("flight-included").value,
+                    flightDeparture: document.getElementById("flight-departure").value,
+                    datePrice: [], // Gestire gli intervalli di prezzo
+                    duration: document.getElementById("duration").value,
+                    category: document.getElementById("offer-category").value // Nuova categoria
+                };
+                document.querySelectorAll('.date-price-entry').forEach(entry => {
+                    const startDate = entry.querySelector('.start-date').value;
+                    const endDate = entry.querySelector('.end-date').value;
+                    const price = entry.querySelector('.price').value;
+                    offerData.datePrice.push({ startDate, endDate, price });
+                });
+            } else if (offerType === 'tour') {
+                offerData = {
+                    title: document.getElementById("tour-title").value,
+                    description: document.getElementById("tour-description").value,
+                    location: document.getElementById("tour-location").value,
+                    price: document.getElementById("tour-price").value,
+                    date: document.getElementById("tour-date").value
+                };
+            }
+
+            fetch('http://localhost:3000/api/private-offers', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ offerData })
+            }).then(response => {
+                // Puoi aggiungere un'azione per confermare l'invio dell'offerta
+            });
+        }
+
+        // Funzione per caricare i punteggi
+        async function fetchScores() {
+            const response = await fetch('http://localhost:3000/api/scores');
+            const scores = await response.json();
+
+            const scoresList = document.getElementById('scores-list');
+            scoresList.innerHTML = ''; // Pulisci la lista esistente
+
+            scores.forEach(score => {
+                const li = document.createElement('li');
+                li.textContent = `Agenzia ID: ${score.agencyId}, Vendite: ${score.totalSales}, Recensioni: ${score.totalReviews}, Punti Totali: ${score.totalPoints}`;
+                scoresList.appendChild(li);
+            });
+        }
+
+        // Chiama la funzione quando la pagina viene caricata
+        window.onload = fetchScores;
+    </script>
+</body>
+</html>

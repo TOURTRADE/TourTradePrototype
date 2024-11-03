@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TourChat - TOURTRADE</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #messages {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .message-sent {
+            background-color: #d1e7dd;
+            text-align: right;
+        }
+
+        .message-received {
+            background-color: #f8d7da;
+            text-align: left;
+        }
+
+        input[type="text"], input[type="date"], input[type="number"], select {
+            width: calc(100% - 110px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #offer-form {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chat con <span id="chat-agent-name"></span></h1>
+    </header>
+
+    <section>
+        <div id="messages"></div>
+        <div>
+            <input type="text" id="message-input" placeholder="Scrivi un messaggio...">
+            <button id="send-button" onclick="sendMessage()">Invia</button>
+        </div>
+
+        <div id="offer-form" class="hidden">
+            <h4>Invia un'offerta</h4>
+            <label for="offer-type">Tipo di Offerta</label>
+            <select id="offer-type" onchange="toggleOfferForm()">
+                <option value="" disabled selected>Seleziona...</option>
+                <option value="pacchetto">Pacchetto</option>
+                <option value="tour">Tour</option>
+            </select>
+
+            <div id="package-form" class="hidden">
+                <label for="package-title">Titolo Pacchetto</label>
+                <input type="text" id="package-title" placeholder="Titolo del pacchetto" required>
+
+                <label for="package-description">Descrizione Pacchetto</label>
+                <textarea id="package-description" placeholder="Descrizione dettagliata" required></textarea>
+
+                <label for="departure-location-package">Luogo di Partenza</label>
+                <input type="text" id="departure-location-package" placeholder="Es. Roma" required>
+
+                <label for="start-date-package">Data di Inizio</label>
+                <input type="date" id="start-date-package" required>
+
+                <label for="end-date-package">Data di Fine</label>
+                <input type="date" id="end-date-package" required>
+
+                <label for="price-package">Prezzo (€)</label>
+                <input type="number" id="price-package" placeholder="Prezzo per persona" required>
+            </div>
+
+            <div id="tour-form" class="hidden">
+                <label for="tour-title">Titolo Tour</label>
+                <input type="text" id="tour-title" placeholder="Titolo del tour" required>
+
+                <label for="tour-description">Descrizione Tour</label>
+                <textarea id="tour-description" placeholder="Descrizione dettagliata" required></textarea>
+
+                <label for="departure-location-tour">Luogo di Partenza</label>
+                <input type="text" id="departure-location-tour" placeholder="Es. Milano" required>
+
+                <label for="start-date-tour">Data di Inizio</label>
+                <input type="date" id="start-date-tour" required>
+
+                <label for="end-date-tour">Data di Fine</label>
+                <input type="date" id="end-date-tour" required>
+
+                <label for="price-tour">Prezzo (€)</label>
+                <input type="number" id="price-tour" placeholder="Prezzo per persona" required>
+            </div>
+
+            <button onclick="sendOffer()">Invia Offerta</button>
+        </div>
+    </section>
+
+    <script>
+        // Aggiungi questa variabile per controllare il tipo di utente
+        const userType = 'agenzia'; // Cambia in 'cliente' se è un cliente
+
+        function toggleOfferForm() {
+            const offerType = document.getElementById("offer-type").value;
+            const packageForm = document.getElementById("package-form");
+            const tourForm = document.getElementById("tour-form");
+
+            packageForm.classList.add('hidden');
+            tourForm.classList.add('hidden');
+
+            if (userType === 'agenzia' || userType === 'tourOperator') {
+                if (offerType === "pacchetto") {
+                    packageForm.classList.remove('hidden');
+                } else if (offerType === "tour") {
+                    tourForm.classList.remove('hidden');
+                }
+            } else {
+                // Se è un cliente, nascondi il modulo delle offerte
+                document.getElementById("offer-form").classList.add('hidden');
+            }
+        }
+
+        function sendMessage() {
+            const message = document.getElementById("message-input").value;
+            const agent = document.getElementById("chat-agent-name").innerText;
+
+            if (message.trim() === '') return;
+
+            fetch('http://localhost:3000/api/messages', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sender: 'Agenzia', message: message, agent: agent })
+            }).then(response => {
+                document.getElementById("message-input").value = ''; // Pulisci il campo
+                loadMessages(); // Ricarica i messaggi
+            });
+        }
+
+        function loadMessages() {
+            fetch('http://localhost:3000/api/messages')
+                .then(response => response.json())
+                .then(data => {
+                    const messagesDiv = document.getElementById("messages");
+                    messagesDiv.innerHTML = ''; // Pulisci i messaggi esistenti
+                    data.forEach(msg => {
+                        const msgDiv = document.createElement("div");
+                        msgDiv.className = "message " + (msg.sender === "Agenzia" ? "message-received" : "message-sent");
+                        msgDiv.innerHTML = `<strong>${msg.sender}:</strong> ${msg.message}`;
+                        messagesDiv.appendChild(msgDiv);
+                    });
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scorri verso il basso
+                });
+        }
+
+        function sendOffer() {
+            const offerType = document.getElementById("offer-type").value;
+            const agent = document.getElementById("chat-agent-name").innerText;
+
+            let offerData;
+            if (offerType === "pacchetto") {
+                offerData = {
+                    title: document.getElementById("package-title").value,
+                    description: document.getElementById("package-description").value,
+                    departure: document.getElementById("departure-location-package").value,
+                    startDate: document.getElementById("start-date-package").value,
+                    endDate: document.getElementById("end-date-package").value,
+                    price: document.getElementById("price-package").value,
+                    agencyId: agent
+                };
+            } else if (offerType === "tour") {
+                offerData = {
+                    title: document.getElementById("tour-title").value,
+                    description: document.getElementById("tour-description").value,
+                    departure: document.getElementById("departure-location-tour").value,
+                    startDate: document.getElementById("start-date-tour").value,
+                    endDate: document.getElementById("end-date-tour").value,
+                    price: document.getElementById("price-tour").value, agencyId: agent }; }
+                    if (!offerData.title || !offerData.description || !offerData.departure || !offerData.startDate || !offerData.endDate || !offerData.price) {
+            return; // Controllo per campi vuoti
+        }
+
+        fetch('http://localhost:3000/api/private-offers', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(offerData)
+        }).then(response => {
+            // Pulisci i campi dell'offerta
+            document.getElementById("package-title").value = '';
+            document.getElementById("package-description").value = '';
+            document.getElementById("departure-location-package").value = '';
+            document.getElementById("start-date-package").value = '';
+            document.getElementById("end-date-package").value = '';
+            document.getElementById("price-package").value = '';
+            
+            document.getElementById("tour-title").value = '';
+            document.getElementById("tour-description").value = '';
+            document.getElementById("departure-location-tour").value = '';
+            document.getElementById("start-date-tour").value = '';
+            document.getElementById("end-date-tour").value = '';
+            document.getElementById("price-tour").value = '';
+            // Puoi aggiungere una notifica o azione per confermare l'invio dell'offerta
+        });
+    }
+
+    // Carica i messaggi all'apertura della pagina
+    document.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const agentName = urlParams.get('agent');
+        document.getElementById("chat-agent-name").innerText = agentName;
+        loadMessages(); // Carica i messaggi
+        toggleOfferForm(); // Controlla se mostrare o nascondere il modulo delle offerte
+    });
+</script>
+</body> </html> ```

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Cliente - TOURTRADE</title>
+    <link rel="stylesheet" href="dashboard-agency.css">
+</head>
+<body>
+    <header>
+        <a href="index.html">Home</a> | <a href="dashboard-customer.html">Dashboard Cliente</a>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Sezioni</h3>
+            <ul>
+                <li><button onclick="toggleSection('my-bookings')">Le mie Prenotazioni</button></li>
+                <li><button onclick="toggleSection('my-favorites')">I miei Preferiti</button></li>
+                <li><button onclick="toggleSection('booking-history')">Storico delle Prenotazioni</button></li>
+                <li><button onclick="toggleSection('notifications')">Notifiche</button></li>
+                <li><button class="dashboard-button" onclick="openChat('Agenzia Esempio')">Messaggistica</button></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <!-- Sezione Le mie Prenotazioni -->
+            <section class="dashboard-section hidden" id="my-bookings">
+                <h2>Le mie Prenotazioni</h2>
+                <h4>Pacchetti</h4>
+                <ul>
+                    <li>
+                        <strong>Pacchetto: </strong> Viaggio in Toscana - 
+                        <button onclick="toggleDetails('package-details')">Visualizza Dettagli</button>
+                        <div id="package-details" class="hidden">
+                            <p><strong>Hotel:</strong> Hotel Toscana, 5 notti</p>
+                            <p><strong>Volo:</strong> Roma - Firenze (andata/ritorno)</p>
+                            <p><strong>Transfer:</strong> Navetta Aeroporto - Hotel</p>
+                            <p><strong>Trasporti:</strong> Noleggio Auto per l’intero soggiorno</p>
+                            <button onclick="openChat('Agenzia Toscana')">Chatta con l’Agenzia</button>
+                        </div>
+                    </li>
+                </ul>
+
+                <h4>Tour</h4>
+                <ul>
+                    <li>
+                        <strong>Tour: </strong> Escursione Gastronomica a Roma - 
+                        <button onclick="toggleDetails('tour-details')">Visualizza Dettagli</button>
+                        <div id="tour-details" class="hidden">
+                            <p><strong>Data:</strong> 15 Agosto 2023</p>
+                            <p><strong>Orario di Inizio:</strong> 10:00 AM</p>
+                            <p><strong>Durata:</strong> 5 ore</p>
+                            <button onclick="openChat('Tour Operator Roma')">Chatta con il Tour Operator</button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Sezione I miei Preferiti -->
+            <section class="dashboard-section hidden" id="my-favorites">
+                <h3>I miei Preferiti</h3>
+                <p>Qui puoi salvare pacchetti e tour che ti interessano per prenotarli successivamente.</p>
+            </section>
+
+            <!-- Sezione Storico delle Prenotazioni -->
+            <section class="dashboard-section hidden" id="booking-history">
+                <h3>Storico delle Prenotazioni</h3>
+                <p>Visualizza le prenotazioni passate e lascia una recensione sulle tue esperienze.</p>
+            </section>
+
+            <!-- Sezione Notifiche -->
+            <section class="dashboard-section hidden" id="notifications">
+                <h3>Notifiche e Aggiornamenti</h3>
+                <p>Rimani aggiornato sui cambiamenti delle prenotazioni e sulle novità dei tuoi preferiti.</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            document.querySelectorAll('.dashboard-section').forEach(section => {
+                section.classList.add('hidden'); // Nascondi tutte le sezioni
+            });
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.classList.remove('hidden'); // Mostra solo la sezione selezionata
+        }
+
+        function toggleDetails(detailsId) {
+            document.getElementById(detailsId).classList.toggle('hidden');
+        }
+
+        function openChat(agentName) {
+            // Reindirizza a una nuova pagina di messaggistica
+            window.location.href = `messaging.html?agent=${encodeURIComponent(agentName)}`;
+        }
+    </script>
+</body>
+</html>

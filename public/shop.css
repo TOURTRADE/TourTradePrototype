@@ -1,0 +1,136 @@
+body {
+    font-family: 'Muli', sans-serif;
+    background-color: #fefae0; /* Sfondo chiaro */
+    color: #223240; /* Colore del testo principale */
+    margin: 0;
+}
+
+.banner {
+    width: 100%;
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.shop-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.shop-logo {
+    width: 100px; /* Dimensione del logo */
+    height: auto;
+    margin-right: 10px; /* Spazio tra logo e nome */
+}
+
+.chat-button {
+    padding: 10px 15px;
+    background-color: #60BF81; /* Cambiato colore per il pulsante chat */
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.chat-button:hover {
+    background-color: #3B8C66; /* Colore al passaggio del mouse */
+}
+
+/* Stile per il pannello laterale delle categorie */
+.sidebar {
+    width: 200px; /* Larghezza del pannello laterale */
+    background-color: #fefae0; /* Sfondo del pannello */
+    border-right: 1px solid #ddd; /* Bordo destro */
+    padding: 20px; /* Padding interno */
+    position: fixed; /* Pannello fisso a sinistra */
+    top: 100px; /* Posizione verticale */
+    left: 0; /* Posizione orizzontale */
+    height: calc(100vh - 100px); /* Altezza dinamica per riempire lo schermo */
+    overflow-y: auto; /* Scorrimento verticale se necessario */
+}
+
+.offer-categories {
+    margin: 20px 0; /* Margine sopra e sotto le categorie */
+}
+
+/* Ogni categoria come pulsante */
+.category {
+    cursor: pointer; /* Cursore a mano per indicare cliccabilità */
+    padding: 10px; /* Spazio interno per le categorie */
+    background-color: #009999; /* Cambiato colore delle categorie */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 5px 0; /* Margine verticale tra le categorie */
+    text-align: center; /* Centra il testo */
+    transition: background-color 0.3s ease; /* Transizione per l'effetto hover */
+}
+
+.category:hover {
+    background-color: #007b7b; /* Colore al passaggio del mouse */
+}
+
+.category-content {
+    padding: 10px;
+    display: none; /* Nascondi il contenuto inizialmente */
+}
+
+.category-content.hidden {
+    display: none; /* Nascondi se ha la classe 'hidden' */
+}
+
+#shop-items-container {
+    margin-left: 220px; /* Spazio per il pannello laterale */
+    padding: 20px; /* Padding per il contenitore */
+}
+
+.reviews {
+    margin: 20px 0;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+.chat-window {
+    margin: 20px 0;
+    padding: 10px;
+    background: #f4f4f4;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Nuova sezione delle destinazioni popolari */
+.popular-destinations {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0; /* Margine sopra e sotto */
+}
+
+.destination {
+    position: relative;
+    width: 23%; /* Dimensione del quadrato per ciascuna destinazione */
+    height: 200px; /* Altezza del quadrato */
+    overflow: hidden; /* Nascondi eventuale overflow */
+    border-radius: 10px; /* Raggio angoli */
+}
+
+.destination img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Copertura dell'immagine */
+}
+
+.destination-title {
+    position: absolute; /* Posizionamento assoluto */
+    bottom: 10px; /* Posizione dal basso */
+    left: 10px; /* Posizione a sinistra */
+    color: white; /* Colore del testo */
+    font-size: 1.5em; /* Dimensione del testo */
+    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+    padding: 5px; /* Padding interno */
+    border-radius: 5px; /* Raggio angoli */
+}

@@ -1,0 +1,92 @@
+body {
+    font-family: 'Muli', sans-serif;
+    background-color: #fefae0; /* Colore di sfondo principale */
+    color: #283618; /* Colore del testo principale */
+    margin: 0;
+}
+
+
+
+.main-header {
+    background-color: transparent; /* Rendi l'header trasparente */
+    color: #fefae0; /* Colore del testo dell'intestazione */
+    padding: 15px;
+    text-align: center;
+    position: fixed; /* Mantiene l'header fisso in cima alla pagina */
+    width: 100%; /* Occupa tutta la larghezza */
+    z-index: 10; /* Assicura che l'header sia sopra gli altri elementi */
+}
+
+.section {
+    padding: 60px 20px;
+    position: relative; /* Per il posizionamento del divisore */
+}
+
+/* Divisore diagonale */
+.section-divider {
+    position: absolute;
+    top: -60px; /* Posizione del divisore rispetto alla sezione */
+    left: 0;
+    width: 100%;
+    height: 60px; /* Altezza del divisore */
+    background: linear-gradient(135deg, #93D94E, #60BF81, #347355, #3B8C66, #223240); /* Tutti i colori della palette */
+    z-index: -1; /* Mette il divisore dietro il contenuto della sezione */
+}
+
+h2 {
+    text-align: center; /* Allineamento del titolo */
+    color: #009999; /* Colore del titolo */
+    margin-bottom: 40px; /* Margine sotto il titolo */
+}
+
+p {
+    line-height: 1.6; /* Interlinea per una migliore leggibilità */
+    margin-bottom: 20px; /* Margine sotto i paragrafi */
+    text-align: justify; /* Giustifica il testo */
+}
+
+.contact-form {
+    max-width: 600px; /* Larghezza massima per il modulo di contatto */
+    margin: 0 auto; /* Centra il modulo */
+    padding: 20px; /* Padding interno */
+    background-color: #ffffff; /* Sfondo del modulo */
+    border-radius: 8px; /* Angoli arrotondati */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%; /* Larghezza del campo */
+    padding: 10px; /* Padding interno */
+    margin-bottom: 15px; /* Margine sotto ogni campo */
+    border: 1px solid #ccc; /* Bordo del campo */
+    border-radius: 5px; /* Angoli arrotondati */
+}
+
+.contact-form button {
+    padding: 10px 15px; /* Padding del pulsante */
+    background-color: #009999; /* Colore di sfondo del pulsante */
+    color: #fefae0; /* Colore del testo del pulsante */
+    border: none; /* Nessun bordo */
+    border-radius: 5px; /* Angoli arrotondati */
+    cursor: pointer; /* Cursore a mano */
+}
+
+.contact-form button:hover {
+    background-color: #007b7b; /* Colore al passaggio del mouse */
+}
+
+/* Sezione video */
+.video-section {
+    margin-top: 40px; /* Margine sopra la sezione video */
+    text-align: center; /* Allineamento del video */
+}
+
+.responsive-video {
+    width: 100%; /* Imposta la larghezza al 100% del contenitore */
+    height: auto; /* Mantiene l'aspetto proporzionale */
+    max-width: 800px; /* Imposta una larghezza massima, se necessario */
+    display: block; /* Rimuove eventuali spazi indesiderati */
+    margin: 0 auto; /* Centra il video nel contenitore */
+}

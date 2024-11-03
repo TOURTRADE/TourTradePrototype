@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Tour Operator - TOURTRADE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+    <header>
+        <a href="index.html">Home</a> | <a href="my-profile.html">Il Mio Profilo</a>
+    </header>
+
+    <section class="shop">
+        <!-- Banner -->
+        <div class="banner">
+            <img src="banner-operator.jpg" alt="Banner Tour Operator" class="banner-image">
+        </div>
+
+        <!-- Logo e Nome dello Shop -->
+        <div class="shop-header">
+            <img src="logo.png" alt="Logo Shop" class="shop-logo">
+            <h2>Shop Tour Operator</h2>
+            <p>Valutazione media: <strong>4.7</strong> ★★★★★</p>
+            <div>
+                <button class="reviews-button" onclick="toggleReviews()">Recensioni</button>
+                <button class="chat-button" onclick="openChat()">Chatta con noi</button>
+            </div>
+        </div>
+
+        <!-- Layout per le Categorie e le Offerte -->
+        <div class="content-container">
+            <!-- Pannello laterale delle Categorie -->
+            <div class="sidebar">
+                <h3>Categorie Tour</h3>
+                <div class="category" onclick="toggleCategoryContent(this)">
+                    <h4>Tutte le Offerte</h4>
+                    <div class="category-content hidden">
+                        <p>Visualizza tutte le offerte disponibili.</p>
+                    </div>
+                </div>
+                <div class="category" onclick="toggleCategoryContent(this)">
+                    <h4>Visite Guidate</h4>
+                    <div class="category-content hidden">
+                        <p>Offerte per visite guidate disponibili.</p>
+                    </div>
+                </div>
+                <div class="category" onclick="toggleCategoryContent(this)">
+                    <h4>Attività All'Aperto</h4>
+                    <div class="category-content hidden">
+                        <p>Offerte per attività all'aperto disponibili.</p>
+                    </div>
+                </div>
+                <div class="category" onclick="toggleCategoryContent(this)">
+                    <h4>Tour Gastronomici</h4>
+                    <div class="category-content hidden">
+                        <p>Offerte per tour gastronomici disponibili.</p>
+                    </div>
+                </div>
+                <div class="category" onclick="toggleCategoryContent(this)">
+                    <h4>Tour Culturali</h4>
+                    <div class="category-content hidden">
+                        <p>Offerte per tour culturali disponibili.</p>
+                    </div>
+                </div>
+                <div class="category" onclick="toggleCategoryContent(this)">
+                    <h4>Escursioni Avventurose</h4>
+                    <div class="category-content hidden">
+                        <p>Offerte per escursioni avventurose disponibili.</p>
+                    </div>
+                </div>
+                <div class="category" onclick="toggleCategoryContent(this)">
+                    <h4>Weekend Romantici</h4>
+                    <div class="category-content hidden">
+                        <p>Offerte per weekend romantici disponibili.</p>
+                    </div>
+                </div>
+                <div class="category" onclick="toggleCategoryContent(this)">
+                    <h4>Pacchetti Famiglia</h4>
+                    <div class="category-content hidden">
+                        <p>Offerte per pacchetti famigliari disponibili.</p>
+                    </div>
+                </div>
+                <div class="category" onclick="toggleCategoryContent(this)">
+                    <h4>Esperienze Locali</h4>
+                    <div class="category-content hidden">
+                        <p>Offerte per esperienze locali disponibili.</p>
+                    </div>
+                </div>
+                <div class="category" onclick="toggleCategoryContent(this)">
+                    <h4>Prenotazioni Anticipate</h4>
+                    <div class="category-content hidden">
+                        <p>Offerte per prenotazioni anticipate disponibili.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenitore per le Offerte Disponibili -->
+            <div id="shop-items-container">
+                <h3 id="available-offers-title">Offerte Disponibili</h3>
+                <!-- I pacchetti e tour verranno inseriti qui dinamicamente -->
+            </div>
+
+            <!-- Recensioni -->
+            <div class="reviews hidden">
+                <h3>Recensioni</h3>
+                <p>"Servizio eccellente! Ho prenotato un pacchetto e tutto è andato liscio." - Cliente A</p>
+                <p>"Le migliori esperienze di viaggio! Consiglio vivamente." - Cliente B</p>
+                <p>"Un'esperienza incredibile, tornerò sicuramente!" - Cliente C</p>
+                <p>"Organizzazione impeccabile e grande attenzione al cliente." - Cliente D</p>
+                <p>Valutazione media: <strong>4.7</strong> ★★★★★</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleReviews() {
+            const reviews = document.querySelector('.reviews');
+            reviews.classList.toggle('hidden');
+            console.log("Sezione recensioni toggled:", reviews.classList.contains("hidden") ? "nascosta" : "visibile");
+        }
+
+        function toggleCategoryContent(element) {
+            // Cambia il titolo in base alla categoria selezionata
+            const title = document.getElementById('available-offers-title');
+            const categoryName = element.querySelector('h4').innerText;
+            title.innerText = `Offerte ${categoryName}`;
+
+            // Chiudi altre categorie aperte
+            const categories = document.querySelectorAll('.category');
+            categories.forEach(cat => {
+                if (cat !== element) {
+                    const content = cat.querySelector('.category-content');
+                    cat.classList.remove('active');
+                    content.classList.add('hidden');
+                }
+            });
+
+            // Apri o chiudi la categoria selezionata
+            const content = element.querySelector('.category-content');
+            const isActive = element.classList.toggle('active');
+            content.classList.toggle('hidden', !isActive);
+            console.log("Contenuto categoria toggled:", content.classList.contains("hidden") ? "nascosto" : "visibile");
+        }
+
+        function openChat() {
+            alert("Apri la chat con lo shop");
+            // Qui puoi implementare la logica per aprire una chat vera
+        }
+
+        // Logica per visualizzare gli articoli dello shop
+        const shopItems = [
+            { id: 1, name: "Pacchetto Roma", price: 300, image: "path/to/image1.jpg" },
+            { id: 2, name: "Tour della Toscana", price: 150, image: "path/to/image2.jpg" },
+            { id: 3, name: "Pacchetto Venezia", price: 500, image: "path/to/image3.jpg" }
+        ];
+
+        function displayShopItems() {
+            const container = document.getElementById("shop-items-container");
+            shopItems.forEach(item => {
+                const div = document.createElement("div");
+                div.classList.add("shop-item");
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" />
+                    <h4>${item.name}</h4>
+                    <p>Prezzo: €${item.price}</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Carica gli articoli dello shop all'avvio della pagina
+        document.addEventListener("DOMContentLoaded", () => {
+            displayShopItems();
+        });
+    </script>
+</body>
+</html>

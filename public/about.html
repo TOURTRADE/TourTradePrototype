@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Siamo - TOURTRADE</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Muli', sans-serif;
+            background-color: #fefae0; /* Colore di sfondo principale */
+            color: #283618; /* Colore del testo principale */
+            margin: 0;
+        }
+
+        .main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: transparent; /* Rendi lo sfondo trasparente */
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    
+}
+
+        .section {
+            padding: 60px 20px; /* Padding per ogni sezione */
+            position: relative; /* Per il posizionamento del divisore */
+        }
+
+        /* Divisore diagonale */
+        .section-divider {
+            position: absolute;
+            top: -60px; /* Posizione del divisore rispetto alla sezione */
+            left: 0;
+            width: 100%;
+            height: 60px; /* Altezza del divisore */
+            background: linear-gradient(135deg, #93D94E, #60BF81, #347355, #3B8C66, #223240); /* Tutti i colori della palette */
+            z-index: -1; /* Mette il divisore dietro il contenuto della sezione */
+        }
+
+        h2 {
+            text-align: center; /* Allineamento del titolo */
+            color: #009999; /* Colore del titolo */
+            margin-bottom: 40px; /* Margine sotto il titolo */
+        }
+
+        p {
+            line-height: 1.6; /* Interlinea per una migliore leggibilità */
+            margin-bottom: 20px; /* Margine sotto i paragrafi */
+            text-align: justify; /* Giustifica il testo */
+        }
+
+        .contact-form {
+            max-width: 600px; /* Larghezza massima per il modulo di contatto */
+            margin: 0 auto; /* Centra il modulo */
+            padding: 20px; /* Padding interno */
+            background-color: #ffffff; /* Sfondo del modulo */
+            border-radius: 8px; /* Angoli arrotondati */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%; /* Larghezza del campo */
+            padding: 10px; /* Padding interno */
+            margin-bottom: 15px; /* Margine sotto ogni campo */
+            border: 1px solid #ccc; /* Bordo del campo */
+            border-radius: 5px; /* Angoli arrotondati */
+        }
+
+        .contact-form button {
+            padding: 10px 15px; /* Padding del pulsante */
+            background-color: #009999; /* Colore di sfondo del pulsante */
+            color: #fefae0; /* Colore del testo del pulsante */
+            border: none; /* Nessun bordo */
+            border-radius: 5px; /* Angoli arrotondati */
+            cursor: pointer; /* Cursore a mano */
+        }
+
+        .contact-form button:hover {
+            background-color: #007b7b; /* Colore al passaggio del mouse */
+        }
+
+        /* Sezione video */
+        .video-section {
+            margin-top: 40px; /* Margine sopra la sezione video */
+            text-align: center; /* Allineamento del video */
+        }
+
+        #aboutVideo {
+            width: 100%; /* Larghezza del video */
+            height: auto; /* Altezza automatica per mantenere il rapporto */
+            max-width: 800px; /* Larghezza massima per dispositivi grandi */
+        }
+
+        .main-footer {
+            background-color: #283618; /* Colore di sfondo del footer */
+            color: #fefae0; /* Colore del testo del footer */
+            padding: 20px; /* Padding del footer */
+            text-align: center; /* Allineamento al centro */
+        }
+
+        .main-footer nav a {
+            color: #fefae0; /* Colore dei link nel footer */
+            margin: 0 10px; /* Margine tra i link */
+            text-decoration: none; /* Nessuna sottolineatura */
+        }
+
+        .main-footer nav a:hover {
+            text-decoration: underline; /* Sottolinea al passaggio del mouse */
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-left">
+        <img src="logo.png" alt="TOURTRADE Logo" class="logo">
+    </div>
+    <div class="header-right">
+        <div class="dropdown">
+            <button class="dropbtn">☰</button>
+            <div class="dropdown-content">
+                <a href="signup.html">Sign Up</a>
+                <a href="login.html">Login</a>
+                <a href="about.html">Chi Siamo</a>
+                <a href="careers.html">Lavora con Noi</a>
+                <a href="contact.html">Contatti</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="about-section section">
+        <div class="section-divider"></div>
+        <h2>Chi Siamo</h2>
+        <p>TOURTRADE è una piattaforma innovativa progettata per connettere agenzie di viaggio, tour operator e viaggiatori in cerca di esperienze indimenticabili. La nostra missione è quella di semplificare il processo di prenotazione di viaggi e tour, offrendo un'interfaccia intuitiva e funzionalità avanzate per tutti gli utenti.</p>
+
+        <h3>La Nostra Visione</h3>
+        <p>Crediamo nel potere dei viaggi come mezzo per arricchire le vite e creare connessioni significative. Vogliamo rendere ogni viaggio un'esperienza straordinaria e personalizzata, adattata alle esigenze di ogni singolo cliente.</p>
+
+        <h3>Il Nostro Team</h3>
+        <p>Il nostro team è composto da esperti del settore dei viaggi, appassionati di esplorazione e professionisti dedicati a fornire il miglior servizio possibile. Ogni membro del team è impegnato a garantire che i nostri clienti abbiano accesso a offerte uniche e opportunità di viaggio.</p>
+
+        <h3>Perché Scegliere TOURTRADE</h3>
+        <ul>
+            <li>Accesso a una vasta gamma di pacchetti e tour.</li>
+            <li>Interfaccia user-friendly per una facile navigazione.</li>
+            <li>Supporto clienti disponibile per assistenza 24/7.</li>
+            <li>Opzioni di pagamento sicure e protette.</li>
+        </ul>
+    </section>
+
+    <section class="contact-section section">
+        <div class="section-divider"></div>
+        <h2>Contattaci</h2>
+        <form id="contact-form" action="submit_form.php" method="post" class="contact-form">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Messaggio:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Invia</button>
+        </form>
+    </section>
+
+    <section class="video-section">
+        <h2>Guarda il Nostro Video</h2>
+        <video autoplay loop id="aboutVideo">
+            <source src="chisiamo.mp4" type="video/mp4">
+            Il tuo browser non supporta i video.
+        </video>
+    </section>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-content">
+        <p>&copy; 2024 TOURTRADE. Tutti i diritti riservati.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Termini e Condizioni</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>

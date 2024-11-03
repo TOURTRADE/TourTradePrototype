@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TourChat - TOURTRADE</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@emoji-mart/css@latest/dist/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emoji-mart/emoji-mart@latest/dist/index.js"></script>
+    <link rel="stylesheet" href="chat.css"> <!-- Include il CSS per la chat -->
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="logo.png" alt="Logo" class="logo">
+        </div>
+        <div class="header-center">
+            <button id="dashboard-button" onclick="window.location.href='dashboard.html'">Dashboard</button>
+            <button id="notification-button"><img src="path/to/bell-icon.png" alt="Notifiche" class="icon"></button>
+            <button id="bookings-button" onclick="window.location.href='bookings.html'">Prenotazioni</button>
+            <button id="profile-button" onclick="toggleProfileMenu()">
+                <img src="path/to/profile-pic.png" alt="Profile" class="profile-icon">
+            </button>
+        </div>
+    </header>
+
+    <video autoplay muted loop id="backgroundVideo">
+        <source src="video.mp4" type="video/mp4">
+        Il tuo browser non supporta i video.
+    </video>
+
+    <section class="chat-container">
+        <div class="previous-chats">
+            <h4>Chat Precedenti</h4>
+            <div class="chat-user" onclick="openChat('Agenzia Esempio')">
+                <div class="profile-circle"></div>
+                <span>Agenzia Esempio</span>
+            </div>
+            <div class="chat-user" onclick="openChat('Tour Operator Roma')">
+                <div class="profile-circle"></div>
+                <span>Tour Operator Roma</span>
+            </div>
+        </div>
+
+        <div class="chat-window">
+            <h3>Chat con <span id="chat-agent-name"></span></h3>
+            <div id="messages" class="messages-box"></div>
+            <div class="input-container">
+                <input type="text" id="message-input" placeholder="Scrivi un messaggio...">
+                <button id="emoji-button" onclick="toggleEmojiPicker()">😊</button>
+                <input type="file" id="file-input" accept="image/*,application/pdf" style="display:none;" onchange="handleFileUpload(this.files)">
+                <label for="file-input">📎</label>
+                <button id="send-button" onclick="handleSendMessage()">Invia</button>
+            </div>
+            <div id="emoji-picker" class="hidden"></div>
+            <div class="offer-section">
+                <h4>Invia un'offerta</h4>
+                <label for="offer-type">Tipo di Offerta:</label>
+                <select id="offer-type" onchange="updateOfferDetailsVisibility()">
+                    <option value="">Seleziona</option>
+                    <option value="package">Pacchetto</option>
+                    <option value="tour">Tour</option>
+                </select>
+
+                <div id="package-offer-details" class="hidden">
+                    <h5>Dettagli Pacchetto</h5>
+                    <label for="package-title">Titolo Pacchetto</label>
+                    <input type="text" id="package-title" placeholder="Titolo del pacchetto" required>
+                    <label for="package-description">Descrizione</label>
+                    <textarea id="package-description" placeholder="Descrizione dettagliata" required></textarea>
+                    <label for="destination">Destinazione</label>
+                    <input type="text" id="destination" placeholder="Es. Toscana, Italia" required>
+                    <label for="departure">Paese di Partenza</label>
+                    <input type="text" id="departure" placeholder="Paese di partenza" required>
+                    <label for="package-type">Tipologia di Pacchetto</label>
+                    <select id="package-type">
+                        <option value="relax">Relax</option>
+                        <option value="culturale">Culturale</option>
+                        <option value="avventura">Avventura</option>
+                    </select>
+                    <label for="last-minute">Opzione Last-Minute</label>
+                    <input type="checkbox" id="last-minute">
+                    <label for="flight-included">Volo Incluso</label>
+                    <select id="flight-included">
+                        <option value="yes">Sì</option>
+                        <option value="no">No</option>
+                    </select>
+                    <label>Intervalli di Date e Prezzi</label>
+                    <div id="date-price-section">
+                        <div class="date-price-entry">
+                            <input type="date" placeholder="Data di Inizio" class="start-date" required>
+                            <input type="date" placeholder="Data di Fine" class="end-date" required>
+                            <input type="number" placeholder="Prezzo (€)" class="price" required>
+                        </div>
+                    </div>
+                    <button type="button" id="add-date-price" onclick="addDatePrice()">Aggiungi un'altra data</button>
+                    <label for="duration">Durata dell'Offerta (giorni)</label>
+                    <input type="number" id="duration" placeholder="Es. 7" required>
+                </div>
+
+                <div id="tour-offer-details" class="hidden">
+                    <h5>Dettagli Tour</h5>
+                    <label for="tour-title">Titolo Tour</label>
+                    <input type="text" id="tour-title" placeholder="Titolo del tour" required>
+                    <label for="tour-description">Descrizione</label>
+                    <textarea id="tour-description" placeholder="Descrizione dettagliata" required></textarea>
+                    <label for="tour-location">Location</label>
+                    <input type="text" id="tour-location" placeholder="Es. Roma" required>
+                    <label for="tour-price">Prezzo (€)</label>
+                    <input type="number" id="tour-price" placeholder="Prezzo del tour" required>
+                    <label for="tour-date">Data Tour</label>
+                    <input type="date" id="tour-date" required>
+                </div>
+                
+                <button id="submit-offer-button" class="hidden" onclick="handleSendOffer()">Invia Offerta</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        function openChat(agencyName) {
+            document.getElementById("chat-agent-name").innerText = agencyName;
+            document.getElementById("messages").innerHTML = ''; // Pulisci i messaggi per una nuova chat
+            loadMessages(agencyName); // Carica i messaggi per la chat selezionata
+            hideOfferDetails(); // Nascondi i dettagli dell'offerta quando si apre una nuova chat
+        }
+
+        function hideOfferDetails() {
+            document.getElementById('package-offer-details').classList.add('hidden');
+            document.getElementById('tour-offer-details').classList.add('hidden');
+            document.getElementById('submit-offer-button').classList.add('hidden'); // Nascondi il pulsante
+            document.getElementById('offer-type').value = ''; // Reset del dropdown
+        }
+
+        function updateOfferDetailsVisibility() {
+            const offerType = document.getElementById('offer-type').value;
+            const packageDetails = document.getElementById('package-offer-details');
+            const tourDetails = document.getElementById('tour-offer-details');
+            const submitButton = document.getElementById('submit-offer-button');
+
+            // Nascondi entrambe le sezioni inizialmente
+            packageDetails.classList.add('hidden');
+            tourDetails.classList.add('hidden');
+            submitButton.classList.add('hidden'); // Nascondi il pulsante di invio
+
+            // Mostra solo la sezione selezionata
+            if (offerType === 'package') {
+                packageDetails.classList.remove('hidden');
+                submitButton.classList.remove('hidden'); // Mostra il pulsante di invio
+            } else if (offerType === 'tour') {
+                tourDetails.classList.remove('hidden');
+                submitButton.classList.remove('hidden'); // Mostra il pulsante di invio
+            }
+        }
+
+        function handleSendOffer() {
+            const offerType = document.getElementById('offer-type').value;
+            let offerData;
+
+            if (offerType === 'package') {
+                offerData = {
+                    title: document.getElementById("package-title").value,
+                    description: document.getElementById("package-description").value,
+                    destination: document.getElementById("destination").value,
+                    departure: document.getElementById("departure").value,
+                    type: document.getElementById("package-type").value,
+                    lastMinute: document.getElementById("last-minute").checked,
+                    flightIncluded: document.getElementById("flight-included").value,
+                    duration: document.getElementById("duration").value,
+                };
+            } else if (offerType === 'tour') {
+                offerData = {
+                    title: document.getElementById("tour-title").value,
+                    description: document.getElementById("tour-description").value,
+                    location: document.getElementById("tour-location").value,
+                    price: document.getElementById("tour-price").value,
+                    date: document.getElementById("tour-date").value,
+                };
+            }
+
+            // Logica per inviare l'offerta al server o gestire come necessario
+            console.log('Invio offerta:', offerData);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Tour Operator - TOURTRADE</title>
+    <link rel="stylesheet" href="dashboard-agency.css">
+    <style>
+        /* Aggiunto per lo stile del cerchio e della testata */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .profile-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ccc; /* Colore di sfondo di default */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0; /* Nasconde l'input file */
+            cursor: pointer;
+        }
+
+        .agency-name {
+            margin-left: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .shop-link {
+            text-decoration: none;
+            color: #009999;
+            font-weight: bold;
+        }
+
+        .shop-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">Home</a> | <a href="dashboard-tour-operator.html">Dashboard Tour Operator</a>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Sezioni</h3>
+            <ul>
+                <li><button onclick="toggleSection('new-tour')">Posta un Nuovo Tour o Esperienza</button></li>
+                <li><button onclick="toggleSection('bookings')">Prenotazioni Ricevute</button></li>
+                <li><button onclick="toggleMessaging()">Messaggistica</button></li>
+                <li><button onclick="toggleSection('boost')">Boost Your Tours</button></li>
+                <li><button onclick="toggleSection('plan')">Piani di Abbonamento</button></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="profile-header">
+                <div class="profile-image">
+                    <input type="file" accept="image/*" onchange="loadProfileImage(event)">
+                </div>
+                <span class="agency-name">Nome Tour Operator</span>
+                <a href="shop.html" class="shop-link">Il Mio Shop</a>
+            </div>
+
+            <!-- Sezione Posta un Nuovo Tour o Esperienza -->
+            <section class="dashboard-section hidden" id="new-tour">
+                <h2>Nuovo Tour o Esperienza</h2>
+                <form id="tour-form">
+                    <label for="tour-title">Titolo del Tour</label>
+                    <input type="text" id="tour-title" placeholder="Titolo del tour" required>
+
+                    <label for="tour-description">Descrizione</label>
+                    <textarea id="tour-description" placeholder="Descrizione dettagliata" required></textarea>
+
+                    <label for="location">Località</label>
+                    <input type="text" id="location" placeholder="Es. Roma, Italia" required>
+
+                    <label for="tour-type">Tipologia di Tour</label>
+                    <select id="tour-type">
+                        <option value="culturale">Culturale</option>
+                        <option value="gastronomico">Gastronomico</option>
+                        <option value="avventura">Avventura</option>
+                        <option value="notturno">Notturno</option>
+                    </select>
+
+                    <!-- Intervalli di Date e Prezzi -->
+                    <label>Intervalli di Date e Prezzi</label>
+                    <div id="date-price-section">
+                        <div class="date-price-entry">
+                            <input type="date" placeholder="Data di Inizio" class="start-date" required>
+                            <input type="date" placeholder="Data di Fine" class="end-date" required>
+                            <input type="number" placeholder="Prezzo per persona (€)" class="price" required>
+                        </div>
+                    </div>
+                    <button type="button" id="add-date-price" onclick="addDatePrice()">Aggiungi un'altra data</button>
+
+                    <!-- Pulsante di Pubblicazione -->
+                    <button type="submit">Pubblica Tour</button>
+                </form>
+            </section>
+
+            <!-- Sezione Prenotazioni Ricevute -->
+            <section class="dashboard-section hidden" id="bookings">
+                <h2>Prenotazioni Ricevute</h2>
+                <ul>
+                    <li>
+                        Prenotazione 1 - Cliente: Mario Rossi - 
+                        <button onclick="openChat('Mario Rossi')">Chatta</button>
+                        <button onclick="uploadDetails()">Carica Dettagli Tour</button>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Sezione Messaggistica -->
+            <section class="dashboard-section hidden" id="messaging">
+                <h3>Chat con <span id="chat-agent-name"></span></h3>
+                <div id="messages"></div>
+                <input type="text" id="message-input" placeholder="Scrivi un messaggio...">
+                <button id="send-button" onclick="sendMessage()">Invia</button>
+                <div id="offers">
+                    <h4>Invia un'offerta</h4>
+                    <input type="text" id="offer-input" placeholder="Descrivi l'offerta...">
+                    <button onclick="sendOffer()">Invia Offerta</button>
+                </div>
+            </section>
+
+            <!-- Sezione Boost Tour Operator -->
+            <section class="dashboard-section hidden" id="boost">
+                <h2>Boost Your Tours</h2>
+                <p>Descrizione del Boost per aumentare la visibilità dei tour offerti...</p>
+                <label><input type="radio" name="boost-level" value="x2"> Boost x2 - €19,90 al mese</label><br>
+                <label><input type="radio" name="boost-level" value="x3"> Boost x3 - €24,90 al mese</label><br>
+                <label><input type="radio" name="boost-level" value="x5"> Boost x5 - €35,90 al mese</label><br>
+                <button type="submit">Attiva Boost Selezionato</button>
+            </section>
+
+            <!-- Sezione Plan Tour Operator -->
+            <section class="dashboard-section hidden" id="plan">
+                <h3>Piani di Abbonamento per Tour Operator</h3>
+                <p>Seleziona un piano e accedi a funzionalità avanzate:</p>
+                <table class="subscription-table">
+                    <tr>
+                        <th>Caratteristiche</th>
+                        <th>Free Plan (0 €)</th>
+                        <th>Premium (19,90 €)</th>
+                        <th>Premium Gold (39,90 €)</th>
+                    </tr>
+                    <tr>
+                        <td>Commissioni TOURTRADE</td>
+                        <td>10%</td>
+                        <td>7%</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Limite Postaggio</td>
+                        <td>10 tour/mese</td>
+                        <td>50 tour/mese</td>
+                        <td>Nessun limite</td>
+                    </tr>
+                    <tr>
+                        <td>Pubblicità su Offerte</td>
+                        <td>Presente</td>
+                        <td>Offerte solo</td>
+                        <td>Non presente</td>
+                    </tr>
+                    <tr>
+                        <td>Boost Incluso</td>
+                        <td>Non incluso</td>
+                        <td>Boost x2</td>
+                        <td>Boost x5</td>
+                    </tr>
+                </table>
+                <button>Salva Piano Selezionato</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Funzione per mostrare/nascondere le sezioni
+        function toggleSection(sectionId) {
+            const allSections = document.querySelectorAll('.dashboard-section');
+            allSections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.toggle('hidden'); // Mostra/nascondi la sezione selezionata
+                } else {
+                    section.classList.add('hidden'); // Nascondi le altre sezioni
+                }
+            });
+        }
+
+        // Funzione per aprire la sezione di messaggistica
+        function toggleMessaging() {
+            window.open('messaging.html', '_blank', 'width=600,height=400'); // Apre una nuova finestra
+        }
+
+        // Funzione per inviare un messaggio
+        function sendMessage() {
+            const messageInput = document.getElementById("message-input").value;
+            const agentName = document.getElementById("chat-agent-name").innerText;
+            if (messageInput.trim() === '') return;
+
+            fetch('http://localhost:3000/api/messages', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sender: 'Tour Operator', message: messageInput, agent: agentName })
+            }).then(response => {
+                document.getElementById("message-input").value = ''; // Pulisci il campo
+                loadMessages(); // Ricarica i messaggi
+            }).catch(error => {
+                console.error("Errore durante l'invio del messaggio:", error);
+            });
+        }
+
+        // Funzione per inviare un'offerta
+        function sendOffer() {
+            const offerInput = document.getElementById("offer-input").value;
+            const agentName = document.getElementById("chat-agent-name").innerText;
+            if (offerInput.trim() === '') return;
+
+            fetch('http://localhost:3000/api/private-offers', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ offer: offerInput, agencyId: agentName }) // Assumendo che l'agenzia sia identificata dal suo nome
+            }).then(response => {
+                document.getElementById("offer-input").value = ''; // Pulisci il campo
+            }).catch(error => {
+                console.error("Errore durante l'invio dell'offerta:", error);
+            });
+        }
+
+        // Funzione per caricare i messaggi
+        function loadMessages() {
+            fetch('http://localhost:3000/api/messages')
+                .then(response => response.json())
+                .then(data => {
+                    const messagesDiv = document.getElementById("messages");
+                    messagesDiv.innerHTML = ''; // Pulisci i messaggi esistenti
+                    data.forEach(msg => {
+                        const msgDiv = document.createElement("div");
+                        msgDiv.innerHTML = `<strong>${msg.sender}:</strong> ${msg.message}`;
+                        messagesDiv.appendChild(msgDiv);
+                    });
+                }).catch(error => {
+                    console.error('Errore nel caricamento dei messaggi:', error);
+                });
+        }
+
+        // Funzione per caricare l'immagine del profilo
+        function loadProfileImage(event) {
+            const profileImage = document.querySelector('.profile-image');
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileImage.style.backgroundImage = `url(${e.target.result})`;
+                    profileImage.style.backgroundSize = 'cover';
+                    profileImage.style.backgroundPosition = 'center';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Funzione per aggiungere un'altra data e prezzo
+        function addDatePrice() {
+            const datePriceSection = document.getElementById("date-price-section");
+            const newEntry = document.createElement("div");
+            newEntry.classList.add("date-price-entry");
+            newEntry.innerHTML = `
+                <input type="date" placeholder="Data di Inizio" class="start-date" required>
+                <input type="date" placeholder="Data di Fine" class="end-date" required>
+                <input type="number" placeholder="Prezzo per persona (€)" class="price" required>
+            `;
+            datePriceSection.appendChild(newEntry);
+        }
+    </script>
+</body>
+</html>

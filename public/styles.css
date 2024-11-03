@@ -1,0 +1,842 @@
+.hidden {
+    display: none;
+}
+
+body {
+    font-family: 'Muli', sans-serif;
+    background-color: #fefae0; /* Sfondo chiaro */
+    color: #283618; /* Testo principale */
+    margin: 0;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.header-left .logo {
+    height: 60px;
+}
+
+.dropdown .dropbtn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #283618; /* Color of the dropdown button */
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: #283618;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #d1e7dd; /* Hover effect */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.announcement-bar {
+    background: linear-gradient(135deg, #93D94E, #60BF81, #347355, #3B8C66, #223240); /* Gradient from the palette */
+    color: white; /* Text color */
+    padding: 3px; /* Decreased padding for a smaller bar */
+    text-align: center; /* Center the text */
+    font-size: 14px; /* Adjusted font size to make it smaller */
+    height: 20px; /* Set a specific height */
+    line-height: 20px; /* Center text vertically */
+    white-space: nowrap; /* Prevents text from wrapping to a new line */
+    overflow: hidden; /* Hides overflow */
+}
+
+.announcement-content {
+    display: inline-block; /* Keeps the content inline */
+    animation: marquee 15s linear infinite; /* Animation for scrolling text */
+}
+
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+
+
+.video-background {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+}
+
+#backgroundVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.search-container {
+    display: flex;
+    flex-direction: column; /* Stack search groups vertically */
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Space between search groups */
+}
+
+.search-bar {
+    height: 50px; /* Set a fixed height */
+    width: 200px; /* Adjust this width as needed */
+    padding: 0 10px; /* Horizontal padding */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    margin-right: 0; /* Remove margin to ensure no spaces */
+}
+
+.search-button, .filter-button {
+    height: 50px; /* Same height as search bar */
+    width: 100px; /* Same width or adjust to fit your layout */
+    background-color: #3B8C66; /* Or use a color from your palette */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    font-size: 16px; /* Font size */
+    margin-left: 0; /* Remove margin to ensure no spaces */
+}
+
+
+
+.filter-button {
+    height: 50px; /* Same height as search bars */
+    width: 200px; /* Set a width that matches the search bars */
+    background-color: #3B8C66; /* Use a color from your palette */
+    color: white;
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 5px; /* Space above the filter button */
+}
+
+
+/* Ensure all search and button elements are without margin */
+.search-group > * {
+    margin: 0; /* Remove margin to avoid gaps */
+}
+
+
+.filter-button:hover {
+    background-color: #007b7b; /* Hover effect */
+}
+
+
+
+/* User icon styles */
+.user-icon {
+    width: 40px; /* Dimensione dell'icona */
+    height: auto; /* Mantiene l'aspetto proporzionale */
+    cursor: pointer; /* Cursore a mano */
+    margin-left: 20px; /* Spazio a sinistra dall'icona */
+}
+
+.user-dropdown-content {
+    display: none; /* Nascondi il contenuto inizialmente */
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+    border-radius: 5px;
+}
+
+.user-dropdown-content a {
+    color: #283618;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.user-dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Divider styles */
+.diagonal-divider {
+    height: 100px; /* Altezza del divisore */
+    width: 100%; /* Larghezza totale */
+    background: linear-gradient(135deg, #93D94E, #60BF81, #347355, #3B8C66, #223240); /* Gradient for dividers */
+    position: relative; /* Posiziona in modo relativo */
+    overflow: hidden; /* Nascondi il contenuto in eccesso */
+}
+
+/* Other styles remain unchanged */
+
+
+.filter-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: #fff; /* Cambia a bianco per testare la visibilità */
+    color: #000; /* Colore del testo nero */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    z-index: 20; 
+    transform: translateX(-100%);
+    transition: transform 0.3s ease; 
+}
+
+.filter-sidebar.visible {
+    transform: translateX(0);
+}
+
+.hidden {
+    display: none; 
+}
+
+
+
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-header button {
+    background: #bc6c25;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.filter-header button:hover {
+    background: #8b4d19;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h4 {
+    margin-bottom: 10px;
+}
+
+.filter-section label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.filter-section input,
+.filter-section select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}.search-filter {
+    margin-bottom: 15px;
+}
+
+.search-filter input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-content {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.filter-content.hidden {
+    display: none;
+}
+
+
+.main-footer {
+    background: linear-gradient(135deg, #93D94E, #60BF81, #347355, #3B8C66, #223240); /* Gradient from the palette */
+    color: #fefae0; /* Colore del testo */
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    min-height: 100px; /* Imposta un'altezza minima per il footer */
+}
+
+
+.main-footer nav a {
+    color: #fefae0;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.main-footer nav a:hover {
+    text-decoration: underline;
+}
+
+/* Sezione Come Funziona */
+.how-it-works {
+    background-color: #f9f9f9;
+    padding: 60px 20px; /* Aumentato per più spazio */
+    text-align: center;
+}
+
+.how-it-works h2 {
+    color: #009999;
+    margin-bottom: 30px;
+}
+
+.info-blocks {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.info-block {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px; /* Aumentato per più spazio */
+    margin: 15px;
+    flex: 1 1 30%; /* Più spazio per le immagini */
+    max-width: 350px; /* Larghezza massima */
+}
+
+.info-block img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    height: 200px; /* Altezza fissa per le immagini */
+    object-fit: cover; /* Mantiene le proporzioni */
+}
+
+.info-block h3 {
+    color: #333;
+    margin: 15px 0;
+}
+
+.info-block p {
+    color: #555;
+}
+.join-button-container {
+    margin-top: 20px; /* Spazio sopra il pulsante */
+    text-align: center; /* Allinea il pulsante al centro */
+}
+.carousel-container {
+    overflow: hidden; /* Nascondi gli elementi che escono dal carosello */
+    margin: 20px 0; /* Margine tra le sezioni */
+}
+
+
+.carousel {
+    display: flex; /* Allinea gli elementi in una riga */
+    overflow-x: auto; /* Permetti lo scorrimento orizzontale */
+    scroll-behavior: smooth; /* Aggiungi una transizione fluida */
+    gap: 10px; /* Spazio tra gli elementi */
+}
+
+.carousel-item {
+    flex: 0 0 200px; /* Imposta la larghezza di ogni elemento */
+    padding: 10px;
+    background-color: #e7f1ff; /* Colore di sfondo */
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-item.ad {
+    position: relative; /* Posiziona l'etichetta in modo assoluto */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ad-label {
+    position: absolute; /* Posiziona l'etichetta in alto a destra */
+    top: 10px; /* Distanza dal top */
+    right: 10px; /* Distanza dal lato destro */
+    background-color: red; /* Colore rosso per l'etichetta */
+    color: white; /* Colore del testo */
+    padding: 5px; /* Padding dell'etichetta */
+    border-radius: 3px; /* Angoli arrotondati */
+    font-size: 12px; /* Dimensione del testo */
+    font-weight: bold; /* Grassetto per risaltare */
+}
+.popular-destinations-section {
+    padding: 60px 20px; /* Maggiore padding per una sezione più grande */
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.popular-destinations-section h2 {
+    color: #009999;
+    margin-bottom: 40px; /* Maggiore margine sotto il titolo */
+    font-size: 2em; /* Aumenta la dimensione del titolo */
+}
+
+.destination-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Due colonne per schermi piccoli */
+    gap: 20px; /* Spazio tra le destinazioni */
+}
+
+@media (min-width: 768px) {
+    .destination-container {
+        grid-template-columns: repeat(4, 1fr); /* Quattro colonne per schermi più grandi */
+    }
+}
+
+.destination-item {
+    position: relative; /* Necessario per la sovrapposizione del testo */
+    overflow: hidden; /* Nascondi qualsiasi overflow */
+    border-radius: 8px;
+}
+
+.destination-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; /* Effetto zoom al passaggio del mouse */
+}
+
+.destination-item:hover img {
+    transform: scale(1.1); /* Zoom dell'immagine al passaggio del mouse */
+}
+
+.destination-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombra per il testo */
+    text-align: center;
+}
+
+.destination-text h3 {
+    font-size: 2em; /* Aumenta la dimensione del testo */
+    margin: 0;
+}
+
+
+.carousel-item img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+/* Stili per la Dashboard */
+.dashboard {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard h2 {
+    text-align: center;
+    color: #606c38;
+}
+
+.dashboard-section {
+    margin-top: 20px;
+}
+
+.dashboard-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #009999;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.dashboard-button:hover {
+    background-color: #007b7b;
+}
+
+.section-content {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Stili per i messaggi della chat */
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-image: url('/public/background-chat.png');
+    background-size: cover;
+    background-position: center;
+}
+
+#messages {
+    border: 1px solid #ccc;
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    max-width: 70%;
+}
+
+.message-sent {
+    background-color: #d1e7dd;
+    align-self: flex-end;
+}
+
+.message-received {
+    background-color: #fff;
+    align-self: flex-start;
+}
+
+/* Stile per i campi di data e prezzo */
+.date-price-entry {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.date-price-entry input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Banner Agenzia */
+.banner-agency {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+}
+
+.agency-info {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.feedback {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.feedback-list {
+    background-color: #e7f1ff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.offers {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.offer-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.boosting-section {
+    background-color: #f4f4f4; /* Sfondo chiaro per la sezione */
+    padding: 40px 20px; /* Padding interno */
+    margin: 20px 0; /* Margine sopra e sotto */
+    border-radius: 8px; /* Angoli arrotondati */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+    text-align: left; /* Allineamento del testo a sinistra */
+}
+
+.boosting-section h2 {
+    color: #bc6c25; /* Colore del titolo */
+}
+
+.boosting-section h3 {
+    color: #283618; /* Colore del sottotitolo */
+    margin-top: 20px; /* Margine superiore per distanziare i titoli */
+}
+
+.boosting-section p {
+    color: #555; /* Colore del testo */
+    line-height: 1.6; /* Interlinea */
+}
+
+.boosting-section ul {
+    margin-left: 20px; /* Margine a sinistra per la lista */
+    color: #555; /* Colore della lista */
+}
+.boost-button-container {
+    text-align: center; /* Centra il pulsante */
+    margin-top: 20px; /* Margine sopra il pulsante */
+}
+
+.boost-button {
+    padding: 10px 20px; /* Padding interno */
+    background-color: #009999; /* Colore di sfondo del pulsante */
+    color: white; /* Colore del testo */
+    border: none; /* Nessun bordo */
+    border-radius: 5px; /* Angoli arrotondati */
+    cursor: pointer; /* Cursore a mano */
+    font-size: 1em; /* Dimensione del font */
+    transition: background-color 0.3s ease; /* Transizione per il passaggio del mouse */
+}
+
+.boost-button:hover {
+    background-color: #007b7b; /* Colore al passaggio del mouse */
+}
+.popular-tours-section {
+    padding: 60px 20px; /* Maggiore padding per una sezione più grande */
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.popular-tours-section h2 {
+    color: #009999;
+    margin-bottom: 40px; /* Maggiore margine sotto il titolo */
+    font-size: 2em; /* Aumenta la dimensione del titolo */
+}
+
+.destination-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Due colonne per schermi piccoli */
+    gap: 20px; /* Spazio tra le destinazioni */
+}
+
+@media (min-width: 768px) {
+    .destination-container {
+        grid-template-columns: repeat(4, 1fr); /* Quattro colonne per schermi più grandi */
+    }
+}
+
+.destination-item {
+    position: relative; /* Necessario per la sovrapposizione del testo */
+    overflow: hidden; /* Nascondi qualsiasi overflow */
+    border-radius: 8px;
+}
+
+.destination-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; /* Effetto zoom al passaggio del mouse */
+}
+
+.destination-item:hover img {
+    transform: scale(1.1); /* Zoom dell'immagine al passaggio del mouse */
+}
+
+.destination-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombra per il testo */
+    text-align: center;
+}
+
+.destination-text h3 {
+    font-size: 2em; /* Aumenta la dimensione del testo */
+}
+.responsive-video {
+    width: 100%; /* Imposta la larghezza al 100% del contenitore */
+    height: auto; /* Mantiene l'aspetto proporzionale */
+    max-width: 800px; /* Imposta una larghezza massima, se necessario */
+    display: block; /* Rimuove eventuali spazi indesiderati */
+    margin: 0 auto; /* Centra il video nel contenitore */
+}
+.dropdown-content {
+    display: none; /* Hide by default */
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
+    min-width: 300px; /* Further increased minimum width for a larger dropdown */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    z-index: 1;
+    right: 0; /* Align to the right */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Increased padding inside the dropdown for a more spacious feel */
+    transition: all 0.3s ease; /* Smooth transition for dropdown appearance */
+    max-height: 400px; /* Increased max height for the dropdown */
+    overflow-y: auto; /* Allow scrolling if content exceeds max height */
+}
+
+/* Styles for the links in the dropdown */
+.dropdown-content a {
+    color: #283618; /* Color from your palette */
+    padding: 15px 25px; /* Increased padding for links for better click area */
+    text-decoration: none; /* No underline */
+    display: block; /* Block display for full clickable area */
+    font-size: 20px; /* Increased font size for better readability */
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+/* Hover effect for links */
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Light background on hover */
+}
+
+/* Show the dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block; /* Show dropdown on hover */
+    animation: fadeIn 0.3s ease; /* Animation for a smooth entry */
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* Start slightly above */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* End at original position */
+    }
+}
+
+/* Style for the dropdown button */
+.dropbtn {
+    font-size: 28px; /* Increased font size for the button */
+    background: none; /* No background */
+    border: none; /* No border */
+    color: #3B8C66; /* Color from your palette */
+    cursor: pointer; /* Pointer on hover */
+    transition: color 0.3s; /* Transition for color change */
+}
+
+/* Change button color on hover */
+.dropbtn:hover {
+    color: #223240; /* Darker shade on hover */
+}
+.header-right {
+    display: flex; /* Align icons horizontally */
+    align-items: center; /* Center items vertically */
+    
+}
+
+.dropdown {
+    margin-right: 20px; /* Space between the three-line icon and user icon */
+}
+
+.personal-area {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.personal-area.show {
+    display: block;
+}
+
+
+.personal-icon {
+    display: flex;
+    align-items: center;
+    margin-left: 15px; /* Aggiusta questa distanza se necessario */
+    vertical-align: middle; /* Aggiunge un allineamento più preciso */
+}
+
+
+.personal-icon img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+
+.personal-area a {
+    color: #283618; /* Link color */
+    padding: 10px 15px; /* Padding for links */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Block display for clickable area */
+}
+
+.personal-area a:hover {
+    background-color: #e7f1ff; /* Hover effect */
+}
+
+
+
+
+
+
+.personal-area h3 {
+    margin: 10px; /* Margins for the header */
+    padding: 0; /* No padding */
+}
+
+.personal-area a {
+    color: #283618; /* Link color */
+    padding: 12px 16px; /* Padding for links */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Block display for full clickable area */
+}
+
+.personal-area a:hover {
+    background-color: #f1f1f1; /* Change background on hover */
+}
+
+.personal-icon:hover + .personal-area {
+    display: block; /* Show dropdown on hover */
+}

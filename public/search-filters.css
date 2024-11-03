@@ -1,0 +1,82 @@
+.filter-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: #fff; /* Cambia a bianco per testare la visibilità */
+    color: #000; /* Colore del testo nero */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    z-index: 20; 
+    transform: translateX(-100%);
+    transition: transform 0.3s ease; 
+}
+
+.filter-sidebar.visible {
+    transform: translateX(0);
+}
+
+.hidden {
+    display: none; 
+}
+
+
+
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-header button {
+    background: #60BF81; /* Cambiato colore per il pulsante */
+    color: #fefae0; /* Colore del testo */
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.filter-header button:hover {
+    background: #3B8C66; /* Colore al passaggio del mouse */
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h4 {
+    margin-bottom: 10px;
+    color: #223240; /* Colore del titolo della sezione */
+}
+
+.filter-section label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.filter-section input,
+.filter-section select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-button {
+    padding: 10px 15px;
+    background-color: #009999; /* Colore del pulsante */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.filter-button:hover {
+    background-color: #007b7b; /* Colore al passaggio del mouse */
+}

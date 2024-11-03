@@ -1,0 +1,494 @@
+.hidden {
+    display: none;
+}
+
+body {
+    font-family: 'Muli', sans-serif;
+    background-color: #fefae0; /* Sfondo chiaro */
+    color: #223240; /* Testo principale */
+    margin: 0;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Allinea verticalmente al centro */
+    padding: 10px 20px; /* Ridotto padding per un aspetto più compatto */
+    background-color: transparent; /* Mantieni lo sfondo trasparente */
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    height: 60px; /* Imposta un'altezza fissa per l'header */
+}
+
+.header-left .logo {
+    height: 40px; /* Ridotto per renderlo più piccolo */
+}
+
+.header-right {
+    display: flex;
+    align-items: center; /* Allinea le icone verticalmente al centro */
+    margin-left: auto; /* Sposta a destra tutto il contenuto di header-right */
+}
+
+.dropdown .dropbtn,
+.personal-icon {
+    font-size: 20px; /* Dimensione uniforme per entrambi */
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 15px; /* Spazio tra le icone */
+}
+
+.user-icon {
+    height: 40px; /* Imposta l'altezza dell'icona utente */
+}
+
+/* Modifiche alla personal-area */
+.personal-area {
+    display: none; /* Inizialmente nascosto */
+    position: absolute; /* Posizionamento assoluto */
+    background-color: rgba(255, 255, 255, 0.9);
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    left: 0; /* Posiziona a sinistra sotto l'icona utente */
+    margin-top: 10px; /* Spazio sopra la tendina */
+}
+
+
+.dropdown .dropbtn,
+.personal-icon {
+    font-size: 20px; /* Dimensione uniforme per entrambi */
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 15px; /* Spazio tra le icone */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.95); /* Sfondo più chiaro */
+    min-width: 200px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Ombra più leggera */
+    z-index: 1;
+    left: 0; /* Posiziona a sinistra */
+    margin-top: 10px; /* Spazio sopra la tendina */
+    border-radius: 8px; /* Angoli arrotondati */
+
+.dropdown-content a {
+    color: #283618;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.personal-area {
+    display: none; /* Inizialmente nascosto */
+    position: absolute; /* Posizionamento assoluto */
+    background-color: rgba(255, 255, 255, 0.95); /* Sfondo più chiaro */
+    min-width: 200px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Ombra più leggera */
+    z-index: 1;
+    left: 0; /* Posiziona a sinistra sotto l'icona utente */
+    margin-top: 10px; /* Spazio sopra la tendina */
+    border-radius: 8px; /* Angoli arrotondati */
+    padding: 10px; /* Padding interno */
+}
+
+.personal-area a {
+    color: #283618; /* Colore del testo */
+    padding: 12px 16px; /* Padding per il collegamento */
+    text-decoration: none;
+    display: block; /* Blocca gli elementi per la selezione completa */
+    transition: background-color 0.3s; /* Transizione per l'effetto hover */
+}
+
+.personal-area a:hover {
+    background-color: #f1f1f1; /* Colore al passaggio del mouse */
+}
+
+
+.video-background {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+}
+
+#backgroundVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: column; /* Cambia la direzione in colonna per i pulsanti di filtro */
+    align-items: center; /* Allinea tutto al centro */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search-group {
+    display: flex;
+    align-items: center;
+    margin: 0; /* Rimuovi margini per attaccare gli elementi */
+    width: 500px; /* Imposta una larghezza fissa per allineare le barre */
+}
+
+.search-bar {
+    flex: 1; /* Fa in modo che la barra di ricerca occupi tutto lo spazio disponibile */
+    padding: 12px; /* Riduci il padding per una dimensione più piccola */
+    border: 1px solid #ccc; /* Bordo */
+    border-radius: 10px; /* Angoli arrotondati */
+    margin-right: 5px; /* Spazio tra la barra e il pulsante */
+    font-size: 16px; /* Aumenta la dimensione del font */
+}
+
+.search-button {
+    padding: 12px 20px; /* Aumenta il padding per rendere il pulsante più piccolo */
+    background-color: #3B8C66; /* Colore di sfondo */
+    color: white; /* Colore del testo */
+    border: none; /* Nessun bordo */
+    border-radius: 10px; /* Angoli arrotondati */
+    cursor: pointer; /* Cursore a mano */
+    height: 50px; /* Altezza del pulsante per allinearlo con la barra di ricerca */
+    font-size: 16px; /* Aumenta la dimensione del font */
+    width: 150px; /* Imposta una larghezza fissa per i pulsanti */
+}
+
+.search-button:hover {
+    background-color: #347355; /* Colore al passaggio del mouse */
+}
+
+.filter-button {
+    margin-top: 15px; /* Margine sopra per distanziare dal gruppo di ricerca */
+    padding: 12px 20px; /* Stessa dimensione del pulsante di ricerca */
+    background-color: #009999; /* Colore di sfondo */
+    color: white; /* Colore del testo */
+    border: none; /* Nessun bordo */
+    border-radius: 10px; /* Angoli arrotondati */
+    cursor: pointer; /* Cursore a mano */
+    font-size: 16px; /* Aumenta la dimensione del font */
+    width: 300px; /* Aumenta la larghezza del pulsante */
+}
+
+.filter-button:hover {
+    background-color: #007b7b; /* Colore al passaggio del mouse */
+}
+
+.filter-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: #fefae0;
+    color: #283618;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    z-index: 20;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto; /* Abilita lo scorrimento verticale */
+    max-height: 90vh; /* Imposta un'altezza massima per evitare che esca dallo schermo */
+}
+
+.filter-sidebar.visible {
+    transform: translateX(0);
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-header button {
+    background: #bc6c25;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.filter-header button:hover {
+    background: #8b4d19;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h4 {
+    margin-bottom: 10px;
+}
+
+.filter-section label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.filter-section input,
+.filter-section select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-filter {
+    margin-bottom: 15px;
+}
+
+.search-filter input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-content {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.filter-content.hidden {
+    display: none;
+}
+
+.main-footer {
+    background: linear-gradient(135deg, #93D94E, #60BF81, #347355, #3B8C66, #223240); /* Gradiente diagonale */
+    color: #fefae0; /* Colore del testo */
+    padding: 20px; /* Padding interno */
+    text-align: center; /* Allineamento del testo al centro */
+    position: relative; /* Posizione relativa */
+    width: 100%; /* Larghezza totale */
+}
+
+.main-footer nav a {
+    color: #fefae0; /* Colore del testo dei link */
+    margin: 0 10px; /* Spazio tra i link */
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+.main-footer nav a:hover {
+    text-decoration: underline; /* Sottolinea al passaggio del mouse */
+}
+
+/* Sezione Come Funziona */
+.how-it-works {
+    background-color: #f9f9f9;
+    padding: 60px 20px; /* Aumentato per più spazio */
+    text-align: center;
+}
+
+.how-it-works h2 {
+    color: #3B8C66; /* Colore del titolo */
+    margin-bottom: 30px;
+}
+
+.info-blocks {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.info-block {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px; /* Aumentato per più spazio */
+    margin: 15px;
+    flex: 1 1 30%; /* Più spazio per le immagini */
+    max-width: 350px; /* Larghezza massima */
+}
+
+.info-block img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    height: 200px; /* Altezza fissa per le immagini */
+    object-fit: cover; /* Mantiene le proporzioni */
+}
+
+.info-block h3 {
+    color: #333;
+    margin: 15px 0;
+}
+
+.info-block p {
+    color: #555;
+}
+
+.join-button-container {
+    margin-top: 20px; /* Spazio sopra il pulsante */
+    text-align: center; /* Allinea il pulsante al centro */
+}
+
+.carousel-container {
+    overflow: hidden; /* Nascondi gli elementi che escono dal carosello */
+    margin: 20px 0; /* Margine tra le sezioni */
+}
+
+.carousel {
+    display: flex; /* Allinea gli elementi in una riga */
+    overflow-x: auto; /* Permetti lo scorrimento orizzontale */
+    scroll-behavior: smooth; /* Aggiungi una transizione fluida */
+    gap: 10px; /* Spazio tra gli elementi */
+}
+
+.carousel-item {
+    flex: 0 0 200px; /* Imposta la larghezza di ogni elemento */
+    padding: 10px;
+    background-color: #e7f1ff; /* Colore di sfondo */
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-item.ad {
+    position: relative; /* Posiziona l'etichetta in modo assoluto */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ad-label {
+    position: absolute; /* Posiziona l'etichetta in alto a destra */
+    top: 10px; /* Distanza dal top */
+    right: 10px; /* Distanza dal lato destro */
+    background-color: red; /* Colore rosso per l'etichetta */
+    color: white; /* Colore del testo */
+    padding: 5px; /* Padding dell'etichetta */
+    border-radius: 3px; /* Angoli arrotondati */
+    font-size: 12px; /* Dimensione del testo */
+    font-weight: bold; /* Grassetto per risaltare */
+}
+
+.popular-destinations-section {
+    padding: 60px 20px; /* Maggiore padding per una sezione più grande */
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.popular-destinations-section h2 {
+    color: #3B8C66; /* Colore del titolo */
+    margin-bottom: 40px; /* Maggiore margine sotto il titolo */
+    font-size: 2em; /* Aumenta la dimensione del titolo */
+}
+
+.destination-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Due colonne per schermi piccoli */
+    gap: 20px; /* Spazio tra le destinazioni */
+}
+
+@media (min-width: 768px) {
+    .destination-container {
+        grid-template-columns: repeat(4, 1fr); /* Quattro colonne per schermi più grandi */
+    }
+}
+
+.destination-item {
+    position: relative; /* Necessario per la sovrapposizione del testo */
+    overflow: hidden; /* Nascondi qualsiasi overflow */
+    border-radius: 8px;
+}
+
+.destination-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; /* Effetto zoom al passaggio del mouse */
+}
+
+.destination-item:hover img {
+    transform: scale(1.1); /* Zoom dell'immagine al passaggio del mouse */
+}
+
+.destination-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombra per il testo */
+    text-align: center;
+}
+
+.destination-text h3 {
+    font-size: 2em; /* Aumenta la dimensione del testo */
+}
+
+.responsive-video {
+    width: 100%; /* Imposta la larghezza al 100% del contenitore */
+    height: auto; /* Mantiene l'aspetto proporzionale */
+    max-width: 800px; /* Imposta una larghezza massima, se necessario */
+    display: block; /* Rimuove eventuali spazi indesiderati */
+    margin: 0 auto; /* Centra il video nel contenitore */
+}
+
+.diagonal-divider {
+    height: 100px; /* Altezza del divisore */
+    width: 100%; /* Larghezza totale */
+    position: relative; /* Posiziona in modo relativo */
+    overflow: hidden; /* Nascondi il contenuto in eccesso */
+}
+
+.diagonal-divider {
+    height: 100px; /* Altezza del divisore */
+    width: 100%; /* Larghezza totale */
+    background: linear-gradient(135deg, #93D94E, #60BF81, #347355, #3B8C66, #223240); /* Gradiente diagonale */
+    position: relative; /* Posiziona in modo relativo */
+    overflow: hidden; /* Nascondi il contenuto in eccesso */
+}
+.personal-icon:hover + .personal-area,
+.personal-area:hover {
+    display: block; /* Mostra la tendina quando si passa il mouse */
+}
+
+.user-icon {
+    height: 40px; /* Imposta l'altezza dell'icona utente */
+}
+.announcement-bar {
+    position: fixed; /* Posizione fissa in alto */
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #93D94E, #60BF81, #347355, #3B8C66, #223240); /* Gradiente della palette */
+    color: white; /* Colore del testo */
+    padding: 10px; /* Padding */
+    white-space: nowrap; /* Non andare a capo */
+    overflow: hidden; /* Nascondi il contenuto in eccesso */
+    z-index: 100; /* Assicurati che sia sopra gli altri contenuti */
+}
+
+.announcement-content {
+    display: inline-block; /* Contenuto in linea */
+    animation: scroll 15s linear infinite; /* Animazione di scorrimento */
+}
+
+@keyframes scroll {
+    0% { transform: translateX(100%); } /* Inizia fuori a destra */
+    100% { transform: translateX(-100%); } /* Termina fuori a sinistra */
+}

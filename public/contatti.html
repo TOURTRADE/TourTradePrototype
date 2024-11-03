@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatti - TOURTRADE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="lavora-con-noi.css"> <!-- Assuming you are using the same styles -->
+    <link rel="stylesheet" href="contatti.css"> <!-- Link to your new CSS file -->
+</head>
+<body>
+
+    <div class="video-background">
+        <video autoplay muted loop id="backgroundVideo">
+            <source src="video.mp4" type="video/mp4">
+            Il tuo browser non supporta i video.
+        </video>
+    </div>
+
+    <div class="content">
+        <h1>Contattaci</h1>
+        <p>Hai domande, suggerimenti o vuoi semplicemente metterti in contatto con noi? Compila il modulo sottostante e ti risponderemo il prima possibile!</p>
+        
+        <form id="contactForm">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Messaggio:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit" class="button">Invia Messaggio</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Messaggio inviato! Ti risponderemo presto.');
+            this.reset(); // Resetta il modulo dopo l'invio
+        });
+    </script>
+</body>
+</html>
